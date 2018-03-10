@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_home"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="10"
+    tools:context="com.example.ritika.e_challan.HomeActivity">
+
+    <LinearLayout
+        android:id="@+id/linearLayoutHomeTop"
+        android:layout_width="match_parent"
+        android:layout_height="0sp"
+        android:layout_weight="3"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:weightSum="3"
+        android:background="#fafafa">
+
+        <ImageView
+            android:id="@+id/imageViewHomeLogo"
+            android:layout_margin="5sp"
+            android:layout_width="120sp"
+            android:layout_height="0sp"
+            android:layout_weight="2"
+            android:src="@drawable/hp" />
+
+        <TextView
+            android:id="@+id/textViewHomeROR"
+            android:layout_width="match_parent"
+            android:layout_height="0sp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Haryana Traffic Police"
+            android:textColor="#1b1b68"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayoutHomeMiddle"
+        android:layout_width="match_parent"
+        android:layout_height="0sp"
+        android:layout_weight="6"
+        android:background="#e90518"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="10sp"
+        android:weightSum="8">
+
+        <TextView
+            android:id="@+id/textViewHomeWelcome"
+            android:layout_width="match_parent"
+            android:layout_height="0sp"
+            android:layout_margin="2sp"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:text="Welcome to Haryana Police Traffic E-Challan System"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/buttonHomePolicePortal"
+            android:layout_width="match_parent"
+            android:layout_height="0sp"
+            android:layout_margin="10sp"
+            android:onClick="PolicePortal"
+            android:drawableTop="@drawable/ic_group_black_24dp"
+            android:layout_weight="3"
+            android:background="@drawable/home_button_background"
+            android:padding="5sp"
+            android:text="Police Portal"
+            android:textAllCaps="false"
+            android:textColor="#ffffff"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/buttonHomeUserPortal"
+            android:layout_width="match_parent"
+            android:drawableTop="@drawable/ic_person_black_24dp"
+            android:layout_height="0sp"
+            android:layout_margin="10sp"
+            android:layout_weight="3"
+            android:background="@drawable/home_button_background"
+            android:onClick="CommonUserPortal"
+            android:padding="5sp"
+            android:text="Common User Portal"
+            android:textAllCaps="false"
+            android:textColor="#ffffff"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayoutHomeBottom"
+        android:layout_width="match_parent"
+        android:layout_height="0sp"
+        android:layout_alignParentBottom="true"
+        android:layout_weight="1"
+        android:background="#e90518">
+
+        <!--<ImageView
+            android:onClick="InfoAlert"
+            android:id="@+id/buttonHomeInfo"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentRight="true"
+            android:layout_margin="10dp"
+            android:src="@drawable/ic_info_outline_black_24dp" />-->
+
+    </RelativeLayout>
+
+</LinearLayout>

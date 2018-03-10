@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayoutSplash"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16sp"
+        android:background="#ffffff">
+
+        <TextView
+            android:id="@+id/textViewSplashTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20sp"
+            android:gravity="center"
+            android:text="HARYANA POLICE TRAFFIC E-CHALLAN SYSTEM"
+            android:textColor="#e90518"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif"/>
+
+        <ImageView
+            android:id="@+id/imageViewSplashLogo"
+            android:layout_width="200sp"
+            android:layout_height="200sp"
+            android:layout_gravity="center"
+            android:layout_margin="20sp"
+            android:src="@drawable/hp"/>
+
+        <TextView
+            android:id="@+id/textViewSplashTag"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20sp"
+            android:layout_marginBottom="20sp"
+            android:gravity="center"
+            android:text="A PART OF ROAD SAFETY AND VIOLATION CONTROL SYSTEM"
+            android:textColor="@color/colorPrimary"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif"/>
+
+        <TextView
+            android:id="@+id/textViewSplashProgress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:layout_marginBottom="10sp"
+            android:layout_marginTop="30sp"
+            android:gravity="center"
+            android:textColor="@color/colorPrimary"
+            android:fontFamily="sans-serif"/>
+
+        <ProgressBar
+            android:id="@+id/progressBarSplash"
+            style="@android:style/Widget.DeviceDefault.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20sp"/>
+
+    </LinearLayout>
+
+</LinearLayout>
