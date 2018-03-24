@@ -18,10 +18,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginActivity" android:label="Sign In"/>
-        <activity android:name=".PolicePortalActivity" android:theme="@style/AppTheme.NoActionBar" android:label="Police Portal"/>
-        <activity android:name=".HomeActivity" android:label="E-Challan"/>
-        <activity android:name=".CommonUserPortalActivity" android:label="Common User Portal"></activity>
+        <activity
+            android:name=".LoginActivity"
+            android:label="Sign In" />
+        <activity
+            android:name=".PolicePortalActivity"
+            android:label="Police Portal"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".HomeActivity"
+            android:label="E-Challan" />
+        <activity
+            android:name=".CommonUserPortalActivity"
+            android:label="Common User Portal" android:theme="@style/AppTheme.NoActionBar"  />
     </application>
 
 </manifest>

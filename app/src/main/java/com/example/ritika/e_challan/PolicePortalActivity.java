@@ -27,15 +27,9 @@ import java.util.List;
 
 public class PolicePortalActivity extends AppCompatActivity {
 
-    private Toolbar toolbar;
-    private TabLayout tabLayout;
-    private ViewPager viewPager;
-
-    /*private int[] tabIcons = {
-            R.drawable.info,
-            R.drawable.info,
-            R.drawable.info
-    };*/
+    Toolbar toolbar;
+    TabLayout tabLayout;
+    ViewPager viewPager;
 
 
     @Override

@@ -1,19 +1,40 @@
 <resources>
     <string name="app_name">E-Challan</string>
 
+    <string name="district_prompt">Choose Offence Place </string>
+    <string name="description_prompt">Choose Offence Description </string>
     <!-- Strings related to login -->
-    <string name="prompt_email">Email</string>
-    <string name="prompt_password">Password (optional)</string>
-    <string name="action_sign_in">Sign in or register</string>
-    <string name="action_sign_in_short">Sign in</string>
-    <string name="error_invalid_email">This email address is invalid</string>
-    <string name="error_invalid_password">This password is too short</string>
-    <string name="error_incorrect_password">This password is incorrect</string>
-    <string name="error_field_required">This field is required</string>
-    <string name="permission_rationale">"Contacts permissions are needed for providing email
-        completions."
-    </string>
-    <string name="pick_time" />
-    <string name="dateformate">dd/MM/yyyy</string>
-    <string name="hour_minutes">HH:mm</string>
+    <string-array name="district_arrays">
+        <item>Ambala</item>
+        <item>Bhiwani</item>
+        <item>Charkhi Dadri</item>
+        <item>Fridabad</item>
+        <item>Ftehabad</item>
+        <item>Gurgaon</item>
+        <item>Hisar</item>
+        <item>Jhajjar</item>
+        <item>Kaithal</item>
+        <item>Karnal</item>
+        <item>Krukshetra</item>
+        <item>Mahendragarh</item>
+        <item>Mewat</item>
+        <item>Palwal</item>
+        <item>Panchkula</item>
+        <item>Panipat</item>
+        <item>Rewari</item>
+        <item>Rohtak</item>
+        <item>Sirsa</item>
+        <item>Sonipat</item>
+        <item>Yamunanagr</item>
+    </string-array>
+
+    <string-array name="challan_description_arrays">
+        <item>RC</item>
+        <item>Licence</item>
+        <item>Helmate</item>
+        <item>Insurance Paper</item>
+        <item>Polution</item>
+        <item>First Aid Kit</item>
+        <item>Missbehaviour</item>
+    </string-array>
 </resources>

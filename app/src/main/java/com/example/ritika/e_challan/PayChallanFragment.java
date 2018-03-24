@@ -7,15 +7,13 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
-public class ChallanHistoryFragment extends Fragment {
+public class PayChallanFragment extends Fragment {
 
-    EditText rcNo;
+    EditText challanNo;
 
-    public ChallanHistoryFragment() {
+    public PayChallanFragment() {
         // Required empty public constructor
     }
 
@@ -31,7 +29,7 @@ public class ChallanHistoryFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        return inflater.inflate(R.layout.fragment_challan_history, container, false);
+        return inflater.inflate(R.layout.fragment_pay_challan, container, false);
 
     }
 

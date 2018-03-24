@@ -25,9 +25,11 @@ import java.net.URLEncoder;
 
 public class LoginActivity extends AppCompatActivity {
 
-     EditText emailEdit,passEdit;
+    EditText policeIdEdit;
+    EditText passEdit;
 
     Button signInButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,9 +43,11 @@ public class LoginActivity extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);*/
 
         passEdit = (EditText) findViewById (R.id.editTextLoginPassword);
+        policeIdEdit = (EditText) findViewById (R.id.editTextLoginPassword);
         signInButton = (Button) findViewById (R.id.buttonSignIn);
         StrictMode.ThreadPolicy sp= new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(sp);
+
 
         /*signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,73 +61,44 @@ public class LoginActivity extends AppCompatActivity {
 
     public void login(View v)
     {
+        /*Intent i= new Intent(this,PolicePortalActivity.class);
+        startActivity(i);*/
 
-        String email= URLEncoder.encode(emailEdit.getText().toString());
+        String policeId= URLEncoder.encode(policeIdEdit.getText().toString());
         String password=passEdit.getText().toString();
 
 
         try
         {
             HttpClient hc= new DefaultHttpClient();
-            HttpPost hp=new HttpPost("http://studentportal.website/echallan/signin.php?email="+email+"&password="+password);
-            Log.v("error","http://studentportal.website/echallan/signin.php?email="+email+"&password="+password);
+            HttpPost hp=new HttpPost("http://studentportal.website/echallan/ab.php?policeId="+policeId+"&password="+password);
+            Log.v("error","http://studentportal.website/echallan/ab.php?policeId="+policeId+"&password="+password);
             HttpResponse hr = hc.execute(hp);
-            String array= EntityUtils.toString(hr.getEntity()).trim();
-            if(array.equals("ok"))
+            String response= EntityUtils.toString(hr.getEntity()).trim();
+            System.out.print(response);
+
+            if(response.equals("ok"))
             {
+                // System.out.print("hello");
                 Intent i= new Intent(this,PolicePortalActivity.class);
                 startActivity(i);
-                SharedPreferences sp = getSharedPreferences("mydata", Context.MODE_PRIVATE);
+                /*SharedPreferences sp = getSharedPreferences("mydata", Context.MODE_PRIVATE);
                 SharedPreferences.Editor e = sp.edit();
-
-                e.putString("email", email);
+                e.putString("policeId", policeId);
                 e.putString("password", password);
-
-
-
-                e.commit();
+                e.commit();*/
 
             }
             else
             {
                 Toast.makeText(LoginActivity.this,"Wrong Username and Password",Toast.LENGTH_LONG).show();
             }
-            /**  String full_name = js.getString("fullname");
-             String address = js.getString("address");
-             String age = js.getString("age");
-             String hb = js.getString("hb");
-             String weight = js.getString("weight");
-             String blood_group = js.getString("blood_group");
-             String contact_no = js.getString("contact_no");**/
-
-
-            /** SharedPreferences sp = getSharedPreferences("mydata", Context.MODE_PRIVATE);
-             SharedPreferences.Editor e = sp.edit();
-
-             e.putString("username", username);
-             e.putString("password", password);
-             e.putString("full_name",full_name);
-             e.putString("hb",hb);
-             e.putString("contact_no",contact_no);
-             e.putString("address", address);
-             e.putString("age",age);
-             e.putString("blood_group", blood_group);
-             e.putString("weight", weight);
-
-
-
-             e.commit();**/
 
         }
         catch(Exception e)
         {
             Log.v("error :",e.toString());
         }
-
     }
-
-
-
-
 }
 
