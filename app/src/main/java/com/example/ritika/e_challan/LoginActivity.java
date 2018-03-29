@@ -1,5 +1,6 @@
 package com.example.ritika.e_challan;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -43,7 +44,7 @@ public class LoginActivity extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);*/
 
         passEdit = (EditText) findViewById (R.id.editTextLoginPassword);
-        policeIdEdit = (EditText) findViewById (R.id.editTextLoginPassword);
+        policeIdEdit = (EditText) findViewById (R.id.editTextLoginPoliceId);
         signInButton = (Button) findViewById (R.id.buttonSignIn);
         StrictMode.ThreadPolicy sp= new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(sp);
@@ -61,6 +62,14 @@ public class LoginActivity extends AppCompatActivity {
 
     public void login(View v)
     {
+
+        ProgressDialog progress = new ProgressDialog(LoginActivity.this);
+        progress.setTitle("Sign In !!");
+        progress.setMessage("Please Wait !!");
+        progress.setCancelable(true);
+        progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progress.show();
+
         /*Intent i= new Intent(this,PolicePortalActivity.class);
         startActivity(i);*/
 
@@ -70,6 +79,8 @@ public class LoginActivity extends AppCompatActivity {
 
         try
         {
+
+
             HttpClient hc= new DefaultHttpClient();
             HttpPost hp=new HttpPost("http://studentportal.website/echallan/ab.php?policeId="+policeId+"&password="+password);
             Log.v("error","http://studentportal.website/echallan/ab.php?policeId="+policeId+"&password="+password);
@@ -82,6 +93,7 @@ public class LoginActivity extends AppCompatActivity {
                 // System.out.print("hello");
                 Intent i= new Intent(this,PolicePortalActivity.class);
                 startActivity(i);
+                finish();
                 /*SharedPreferences sp = getSharedPreferences("mydata", Context.MODE_PRIVATE);
                 SharedPreferences.Editor e = sp.edit();
                 e.putString("policeId", policeId);
@@ -91,6 +103,7 @@ public class LoginActivity extends AppCompatActivity {
             }
             else
             {
+                progress.dismiss();
                 Toast.makeText(LoginActivity.this,"Wrong Username and Password",Toast.LENGTH_LONG).show();
             }
 

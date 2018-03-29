@@ -3,7 +3,10 @@
 
     <string name="district_prompt">Choose Offence Place </string>
     <string name="description_prompt">Choose Offence Description </string>
-    <!-- Strings related to login -->
+
+    <string name="dateformate">dd/MM/yyyy</string>
+    <string name="hour_minutes">HH:mm</string>
+
     <string-array name="district_arrays">
         <item>Ambala</item>
         <item>Bhiwani</item>
