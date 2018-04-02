@@ -80,6 +80,8 @@ public class RegisterChallanFragment  extends Fragment {
                 pickerDateEdit=(DatePicker)getActivity().findViewById(R.id.datePickerChallanDate);
                 pickerTimeEdit=(TimePicker)getActivity().findViewById(R.id.timePickerChallanTime);
 
+                StrictMode.ThreadPolicy sp= new StrictMode.ThreadPolicy.Builder().permitAll().build();
+                StrictMode.setThreadPolicy(sp);
 
                 register();
 
@@ -90,9 +92,6 @@ public class RegisterChallanFragment  extends Fragment {
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void register()
     {
-        StrictMode.ThreadPolicy sp= new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(sp);
-
 // create instance of Random class
         Random rand = new Random();
 
@@ -124,23 +123,20 @@ public class RegisterChallanFragment  extends Fragment {
                 + description + ", place: " + place + ", date: " + date + ", time: " + time + ", challanNo"
                 +challanNo ,Toast.LENGTH_LONG).show();
 
-
-        try{
-            http://studentportal.website/echallan/ab.php?policeId="+policeId+"&password="+password
-            Toast.makeText(getActivity(),time,Toast.LENGTH_LONG).show();
+        try
+        {
             HttpClient hc= new DefaultHttpClient();
-            HttpPost hp=new HttpPost("http://studentportal.website/echallan/reg.php?challanNo="+challanNo+"&name="+name+"&phoneNo="+phoneNo+"&rcNo="+rcNo+"&licenceNo="+licenceNo+"&date="+date+"&time="+time+"&description="+description+"&place="+place);
-            Log.v("error","http://studentportal.website/echallan/reg.php?challanNo="+challanNo+"&name="+name+"&phoneNo="+phoneNo+"&rcNo="+rcNo+"&licenceNo="+licenceNo+"&date="+date+"&time="+time+"&description="+description+"&place="+place);
-            Toast.makeText(getActivity(),"Hello try",Toast.LENGTH_LONG).show();
-            HttpResponse hr = hc.execute(hp);
-            String result= EntityUtils.toString(hr.getEntity()).trim();
-            Toast.makeText(getActivity(),result,Toast.LENGTH_LONG).show();
+            HttpPost hp=new HttpPost("http://studentportal.website/echallan/reg.php?challan="+challanNo+"&name="+name);
+           // Log.v("error","http://studentportal.website/echallan/reg.php?challanNo="+challanNo+"&name="+name+"&phoneNo="+phoneNo+"&rcNo="+rcNo+"&licenceNo="+licenceNo+"&date="+date+"&time="+time+"&description="+description+"&place="+place);
 
-            if(result.equals("ok"))
+            HttpResponse hr = hc.execute(hp);
+            String response= EntityUtils.toString(hr.getEntity()).trim();
+            System.out.print(response);
+
+            if(response.equals("ok"))
             {
-                Toast.makeText(getActivity(),"Succesfully Registered",Toast.LENGTH_LONG).show();
-                //Intent i= new Intent(getActivity(),PolicePortalActivity.class);
-                //startActivity(i);
+                Intent i= new Intent(getActivity(),PolicePortalActivity.class);
+                startActivity(i);
 
             }
             else
@@ -152,8 +148,7 @@ public class RegisterChallanFragment  extends Fragment {
         }
         catch(Exception e)
         {
-            Toast.makeText(getActivity(),"Catchhh",Toast.LENGTH_LONG).show();
-            //Log.v("error :",e.toString());
+            Log.v("error :",e.toString());
         }
     }
 }
