@@ -71,7 +71,7 @@
                     android:fontFamily="sans-serif"/>
 
                 <Button
-                    android:onClick="searchHistory"
+                    android:id="@+id/buttonSearchChallanHistory"
                     style="?android:textAppearanceSmall"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -83,6 +83,13 @@
                     android:textAllCaps="false"
                     android:textColor="#ffffff"
                     android:fontFamily="sans-serif"/>
+
+                <!--<ListView
+                    android:id="@+id/listViewChallanHistorylist"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+-->
+
             </LinearLayout>
         </ScrollView>
 

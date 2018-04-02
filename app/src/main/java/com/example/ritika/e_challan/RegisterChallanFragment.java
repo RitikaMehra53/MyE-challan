@@ -22,16 +22,24 @@ import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 
+import java.io.IOException;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
 import java.util.SimpleTimeZone;
 
@@ -43,8 +51,6 @@ public class RegisterChallanFragment  extends Fragment {
     EditText phoneNoEdit;
     EditText rcNoEdit;
     EditText licenceNoEdit;
-    TimePicker pickerTimeEdit;
-    DatePicker pickerDateEdit;
     Button register;
 
     public RegisterChallanFragment() {
@@ -77,8 +83,6 @@ public class RegisterChallanFragment  extends Fragment {
                 licenceNoEdit=(EditText)getActivity().findViewById(R.id.editTextLicenseNo);
                 placeListEdit= (Spinner) getActivity().findViewById(R.id.SpinnerOffencePlace);
                 descriptionListEdit= (Spinner) getActivity().findViewById(R.id.SpinnerOffenceDescription);
-                pickerDateEdit=(DatePicker)getActivity().findViewById(R.id.datePickerChallanDate);
-                pickerTimeEdit=(TimePicker)getActivity().findViewById(R.id.timePickerChallanTime);
 
 
                 register();
@@ -104,36 +108,38 @@ public class RegisterChallanFragment  extends Fragment {
         String phoneNo=phoneNoEdit.getText().toString();
         String rcNo= URLEncoder.encode(rcNoEdit.getText().toString());
         String licenceNo= URLEncoder.encode(licenceNoEdit.getText().toString());
-        String description= URLEncoder.encode(descriptionListEdit.getSelectedItem().toString());
+        String des= URLEncoder.encode(descriptionListEdit.getSelectedItem().toString());
         String place= URLEncoder.encode(placeListEdit.getSelectedItem().toString());
 
-        java.util.Calendar calender = java.util.Calendar.getInstance();
-        calender.clear();
-        calender.set(java.util.Calendar.MONTH, pickerDateEdit.getMonth());
-        calender.set(java.util.Calendar.DAY_OF_MONTH, pickerDateEdit.getDayOfMonth());
-        calender.set(java.util.Calendar.YEAR, pickerDateEdit.getYear());
-
-        SimpleDateFormat dateFormatter = new SimpleDateFormat(getString(R.string.dateformate));
-        String date = dateFormatter.format(new Date(calender.getTimeInMillis())).toString();
+        Calendar calender = Calendar.getInstance();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        String date = dateFormat.format(calender.getTimeInMillis()).toString();
 
         Calendar cal = Calendar.getInstance();
         SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm:ss a");
-        String time = timeFormat.format(cal.getTime()).toString();
+
+        String time1 = timeFormat.format(cal.getTime()).toString();
         Toast.makeText(getActivity(),"Name: \n" + name + ", phone no: " + phoneNo + ", Rc no: " + rcNo + ", licence no: "
                 + licenceNo + ", description: "
-                + description + ", place: " + place + ", date: " + date + ", time: " + time + ", challanNo"
+                + des + ", place: " + place + ", date: " + date + ", time: " + time1 + ", challanNo"
                 +challanNo ,Toast.LENGTH_LONG).show();
 
 
+
+
         try{
-            http://studentportal.website/echallan/ab.php?policeId="+policeId+"&password="+password
-            Toast.makeText(getActivity(),time,Toast.LENGTH_LONG).show();
+
+
             HttpClient hc= new DefaultHttpClient();
-            HttpPost hp=new HttpPost("http://studentportal.website/echallan/reg.php?challanNo="+challanNo+"&name="+name+"&phoneNo="+phoneNo+"&rcNo="+rcNo+"&licenceNo="+licenceNo+"&date="+date+"&time="+time+"&description="+description+"&place="+place);
-            Log.v("error","http://studentportal.website/echallan/reg.php?challanNo="+challanNo+"&name="+name+"&phoneNo="+phoneNo+"&rcNo="+rcNo+"&licenceNo="+licenceNo+"&date="+date+"&time="+time+"&description="+description+"&place="+place);
+            HttpPost hp=new HttpPost("http://studentportal.website/echallan/reg.php?challanNo="+challanNo+"&name="+name+"&phoneNo="+phoneNo+"&rcNo="+rcNo+"&licenceNo="+licenceNo+"&place="+place+"&des1="+des);
+        //    Log.v("error","http://studentportal.website/echallan/reg.php?challanNo="+challanNo+"&name="+name+"&phoneNo="+phoneNo+"&rcNo="+rcNo+"&licenceNo="+licenceNo+"&date="+date+"&time="+time+"&description="+description+"&place="+place);
+
+
             Toast.makeText(getActivity(),"Hello try",Toast.LENGTH_LONG).show();
+
             HttpResponse hr = hc.execute(hp);
             String result= EntityUtils.toString(hr.getEntity()).trim();
+
             Toast.makeText(getActivity(),result,Toast.LENGTH_LONG).show();
 
             if(result.equals("ok"))
