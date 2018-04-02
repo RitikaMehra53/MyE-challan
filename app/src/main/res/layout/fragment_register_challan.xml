@@ -164,63 +164,8 @@
 
                 </android.support.v7.widget.LinearLayoutCompat>
 
-                <android.support.v7.widget.LinearLayoutCompat
-                    android:layout_width="match_parent"
-                    android:layout_height="0sp"
-                    android:layout_margin="5sp"
-                    android:layout_weight="3"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:weightSum="4">
-
-                    <TextView
-                        android:id="@+id/textViewDatePickerChallanDate"
-                        android:layout_width="0sp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:fontFamily="sans-serif"
-                        android:text="Offence Date: "
-                        android:textSize="16sp" />
 
 
-                    <DatePicker
-                        android:id="@+id/datePickerChallanDate"
-                        android:layout_width="0sp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="3"
-                        android:calendarViewShown="true"
-                        android:clickable="true" />
-
-                </android.support.v7.widget.LinearLayoutCompat>
-
-                <android.support.v7.widget.LinearLayoutCompat
-                    android:layout_width="match_parent"
-                    android:layout_height="0sp"
-                    android:layout_margin="5sp"
-                    android:layout_weight="3"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:weightSum="4">
-
-                    <TextView
-                        android:id="@+id/textViewTimePickerChallanTime"
-                        android:layout_width="0sp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:fontFamily="sans-serif"
-                        android:text="Offence Time: "
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        />
-
-                    <TimePicker
-                        android:id="@+id/timePickerChallanTime"
-                        android:layout_width="0sp"
-                        android:layout_height="100sp"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_weight="3" />
-
-                </android.support.v7.widget.LinearLayoutCompat>
 
 
 

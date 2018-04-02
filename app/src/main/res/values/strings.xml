@@ -12,7 +12,7 @@
         <item>Bhiwani</item>
         <item>Charkhi Dadri</item>
         <item>Fridabad</item>
-        <item>Ftehabad</item>
+        <item>Fatehabad</item>
         <item>Gurgaon</item>
         <item>Hisar</item>
         <item>Jhajjar</item>
@@ -33,11 +33,10 @@
 
     <string-array name="challan_description_arrays">
         <item>RC</item>
+        <item>Helmet</item>
+        <item>Pollution</item>
         <item>Licence</item>
-        <item>Helmate</item>
-        <item>Insurance Paper</item>
-        <item>Polution</item>
-        <item>First Aid Kit</item>
-        <item>Missbehaviour</item>
+        <item>Insurance</item>
+        <item>Misbehaviour</item>
     </string-array>
 </resources>

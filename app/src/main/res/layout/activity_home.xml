@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_home"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     android:weightSum="10"
     tools:context="com.example.ritika.e_challan.HomeActivity">
@@ -90,6 +90,22 @@
             android:onClick="CommonUserPortal"
             android:padding="5sp"
             android:text="Common User Portal"
+            android:textAllCaps="false"
+            android:textColor="#ffffff"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/buttonAdminPortal"
+            android:layout_width="match_parent"
+            android:drawableTop="@drawable/ic_person_black_24dp"
+            android:layout_height="0sp"
+            android:layout_margin="10sp"
+            android:layout_weight="3"
+            android:background="@drawable/home_button_background"
+            android:onClick="AdminPortal"
+            android:padding="5sp"
+            android:text="Admin Portal"
             android:textAllCaps="false"
             android:textColor="#ffffff"
             android:textSize="22sp"

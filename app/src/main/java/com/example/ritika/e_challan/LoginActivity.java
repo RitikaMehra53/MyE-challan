@@ -75,10 +75,14 @@ public class LoginActivity extends AppCompatActivity {
 
         String policeId= URLEncoder.encode(policeIdEdit.getText().toString());
         String password=passEdit.getText().toString();
+        Intent i= new Intent(this,PolicePortalActivity.class);
+        startActivity(i);
+        finish();
 
-
-        try
+        /*try
         {
+
+
 
 
             HttpClient hc= new DefaultHttpClient();
@@ -94,11 +98,11 @@ public class LoginActivity extends AppCompatActivity {
                 Intent i= new Intent(this,PolicePortalActivity.class);
                 startActivity(i);
                 finish();
-                /*SharedPreferences sp = getSharedPreferences("mydata", Context.MODE_PRIVATE);
+                *//*SharedPreferences sp = getSharedPreferences("mydata", Context.MODE_PRIVATE);
                 SharedPreferences.Editor e = sp.edit();
                 e.putString("policeId", policeId);
                 e.putString("password", password);
-                e.commit();*/
+                e.commit();*//*
 
             }
             else
@@ -111,7 +115,7 @@ public class LoginActivity extends AppCompatActivity {
         catch(Exception e)
         {
             Log.v("error :",e.toString());
-        }
+        }*/
     }
 }
 
