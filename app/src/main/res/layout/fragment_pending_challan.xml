@@ -71,7 +71,7 @@
                     android:fontFamily="sans-serif"/>
 
                 <Button
-                    android:onClick="searchPending"
+                    android:onClick="get_pending_challans"
                     style="?android:textAppearanceSmall"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

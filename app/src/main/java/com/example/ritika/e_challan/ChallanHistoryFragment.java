@@ -45,8 +45,8 @@ import static android.R.attr.description;
 
 public class ChallanHistoryFragment extends Fragment {
 String rc;
+    String phoneNo,name,rcN,licenceNo,place,description,challanNo,payable,fineAmount,date1,time1;
 
-    ListView detailList;
     EditText rcNo;
     Button searchButton;
     public ChallanHistoryFragment() {
@@ -90,16 +90,6 @@ String rc;
 
         rc= URLEncoder.encode(rcNo.getText().toString());
 
-        /*ChallanDetails challanDetails=new ChallanDetails();
-        challanDetails.setChallanNo(123);
-        challanDetails.setName("Ajay");
-
-
-        final List<ChallanDetails> details = new ArrayList<>();
-        detailList = (ListView) getActivity().findViewById(R.id.listViewChallanHistorylist);
-
-        HistoryBaseAdapter historyBaseAdapter = new HistoryBaseAdapter(getActivity(), details);
-        detailList.setAdapter(historyBaseAdapter);*/
 
         try{
 
@@ -116,18 +106,35 @@ String rc;
 
             Toast.makeText(getActivity(),result,Toast.LENGTH_LONG).show();
 
-            if(result.equals("ok"))
-            {
-                Toast.makeText(getActivity(),"Succesfully Registered",Toast.LENGTH_LONG).show();
-                //Intent i= new Intent(getActivity(),PolicePortalActivity.class);
-                //startActivity(i);
+             String response= EntityUtils.toString(hr.getEntity());
+                Toast.makeText(getActivity(), result, Toast.LENGTH_LONG).show();
+                JSONObject js= new JSONObject(response);
+                name= js.getString("name");
+            challanNo = js.getString("challanNo");
+            phoneNo = js.getString("phoneNo");
+            rcN = js.getString("rcN");
+            licenceNo = js.getString("licenceNo");
+            date1 = js.getString("date1");
+                time1 = js.getString("time1");
+                description =js.getString("description");
+                place = js.getString("place");
+            payable = js.getString("payable");
+            fineAmount = js.getString("fineAmount");
 
-            }
-            else
-            {
-                //progress.dismiss();
-                Toast.makeText(getActivity(),"Try Again!",Toast.LENGTH_LONG).show();
-            }
+            Toast.makeText(getActivity(),"Print Values ---"+name +challanNo+phoneNo +rcN+licenceNo+date1+time1+description+place+payable+fineAmount,Toast.LENGTH_LONG).show();
+
+
+                /*e13.setText(full_name);
+                e14.setText(email);
+
+                e16.setText(contact_no);
+                e17.setText(age);
+                e19.setText(weight);
+                e20.setText(address);
+                e21.setText(blood_group);
+                e22.setText(hb);*/
+
+
 
         }
         catch(Exception e)
