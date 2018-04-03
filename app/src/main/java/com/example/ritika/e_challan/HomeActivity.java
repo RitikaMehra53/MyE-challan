@@ -20,12 +20,18 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void PolicePortal(View view) {
-        Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
+        Intent intent = new Intent(HomeActivity.this, PoliceLoginActivity.class);
         startActivity(intent);
     }
 
     public void CommonUserPortal(View view) {
         Intent intent = new Intent(HomeActivity.this, CommonUserPortalActivity.class);
+        startActivity(intent);
+
+    }
+
+    public void AdminPortal(View view) {
+        Intent intent = new Intent(HomeActivity.this, AdminLoginActivity.class);
         startActivity(intent);
 
     }

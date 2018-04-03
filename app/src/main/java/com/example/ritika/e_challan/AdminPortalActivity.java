@@ -17,17 +17,17 @@ import android.view.MenuItem;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PolicePortalActivity extends AppCompatActivity {
+public class AdminPortalActivity extends AppCompatActivity {
 
     Toolbar toolbar;
     TabLayout tabLayout;
-    ViewPager viewPager;
+    ViewPager viewPager2;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_police_portal);
+        setContentView(R.layout.activity_admin_portal);
 
         /*ActionBar actionBar = getSupportActionBar();
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#1f1f6e")));*/
@@ -35,19 +35,18 @@ public class PolicePortalActivity extends AppCompatActivity {
         //getSupportActionBar().setTitle("Tabs with Icon & Text");
 
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar2);
         setSupportActionBar(toolbar);
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setTitleTextColor(Color.WHITE);
 
 
 
-        viewPager = (ViewPager) findViewById(R.id.viewpager);
-        setupViewPager(viewPager);
+        viewPager2 = (ViewPager) findViewById(R.id.viewpager2);
+        setupViewPager(viewPager2);
 
-        tabLayout = (TabLayout) findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(viewPager);
+        tabLayout = (TabLayout) findViewById(R.id.tabs2);
+        tabLayout.setupWithViewPager(viewPager2);
         //setupTabIcons();
 
     }
@@ -55,8 +54,10 @@ public class PolicePortalActivity extends AppCompatActivity {
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new RegisterChallanFragment(), "Register Challan");
-        adapter.addFragment (new ChallanHistoryFragment(), "Challan History");
+        adapter.addFragment(new AddPoliceFragment(), "Add Police");
+        adapter.addFragment (new DeletePoliceFragment(), "Delete Police");
+        adapter.addFragment (new UpdatePoliceFragment(), "Update Police");
+        adapter.addFragment (new ChallanUpdateFragment(), "Update Challan");
         viewPager.setAdapter(adapter);
     }
 
@@ -108,11 +109,8 @@ public class PolicePortalActivity extends AppCompatActivity {
     }
 
     private void logout() {
-        Intent intent=new Intent(PolicePortalActivity.this,PoliceLoginActivity.class);
+        Intent intent=new Intent(AdminPortalActivity.this,AdminLoginActivity.class);
         startActivity(intent);
         finish();
     }
-
-
 }
-

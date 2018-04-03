@@ -19,7 +19,6 @@
             android:layout_height="match_parent">
 
             <LinearLayout
-                android:id="@+id/email_login_form"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
@@ -50,7 +49,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif"
-                    android:text="PENDING CHALLAN"
+                    android:text="DELETE POLICE"
                     android:textAlignment="center"
                     android:textColor="#1f1f6e"
                     android:textSize="25sp"
@@ -59,10 +58,10 @@
                     android:layout_marginBottom="10sp"/>
 
                 <EditText
-                    android:id="@+id/editTextPendingChallanRCNo"
+                    android:id="@+id/editTextDeletePoliceId"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Enter RC Number"
+                    android:hint="Enter Police Id"
                     android:inputType="text"
                     android:maxLines="1"
                     android:layout_marginTop="10sp"
@@ -71,12 +70,13 @@
                     android:fontFamily="sans-serif"/>
 
                 <Button
-                    android:onClick="get_pending_challans"
+                    android:onClick="delete"
+                    android:id="@+id/buttonDeletePolice"
                     style="?android:textAppearanceSmall"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20sp"
-                    android:text="Search"
+                    android:text="Delete"
                     android:background="@drawable/form_button_background"
                     android:textStyle="bold"
                     android:textSize="16sp"

@@ -1,30 +1,20 @@
 package com.example.ritika.e_challan;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.StrictMode;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
-
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.util.EntityUtils;
 
 import java.net.URLEncoder;
 
-public class LoginActivity extends AppCompatActivity {
+public class PoliceLoginActivity extends AppCompatActivity {
 
     EditText policeIdEdit;
     EditText passEdit;
@@ -35,7 +25,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_police_login);
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#1f1f6e")));
@@ -53,7 +43,7 @@ public class LoginActivity extends AppCompatActivity {
         /*signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(LoginActivity.this,PolicePortalActivity.class);
+                Intent intent=new Intent(PoliceLoginActivity.this,PolicePortalActivity.class);
                 startActivity(intent);
             }
         });*/
@@ -63,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
     public void login(View v)
     {
 
-        ProgressDialog progress = new ProgressDialog(LoginActivity.this);
+        ProgressDialog progress = new ProgressDialog(PoliceLoginActivity.this);
         progress.setTitle("Sign In !!");
         progress.setMessage("Please Wait !!");
         progress.setCancelable(true);
@@ -108,7 +98,7 @@ public class LoginActivity extends AppCompatActivity {
             else
             {
                 progress.dismiss();
-                Toast.makeText(LoginActivity.this,"Wrong Username and Password",Toast.LENGTH_LONG).show();
+                Toast.makeText(PoliceLoginActivity.this,"Wrong Police Id and Password",Toast.LENGTH_LONG).show();
             }
 
         }
