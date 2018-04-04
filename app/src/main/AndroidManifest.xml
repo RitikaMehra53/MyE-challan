@@ -3,11 +3,10 @@
     package="com.example.ritika.e_challan">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-<uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
-
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
 
     <application
         android:allowBackup="true"
@@ -36,15 +35,17 @@
         <activity
             android:name=".CommonUserPortalActivity"
             android:label="Common User Portal"
-            android:theme="@style/AppTheme.NoActionBar"  />
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".AdminLoginActivity"
             android:label="Admin Sign In" />
-
         <activity
             android:name=".AdminPortalActivity"
             android:label="Admin Portal"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".UpdatePoliceActivity"
+            android:label="Update Police Details"/>
     </application>
 
 </manifest>

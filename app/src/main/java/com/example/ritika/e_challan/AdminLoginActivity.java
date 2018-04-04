@@ -62,19 +62,16 @@ public class AdminLoginActivity extends AppCompatActivity {
         progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progress.show();
 
-        Intent i= new Intent(this,AdminPortalActivity.class);
-        startActivity(i);
-        finish();
+
 
         String adminId= URLEncoder.encode(adminIdEdit.getText().toString());
         String password=adminPassEdit.getText().toString();
 
-
-        /*try
+        try
         {
             HttpClient hc= new DefaultHttpClient();
-            HttpPost hp=new HttpPost("http://studentportal.website/echallan/adminlogin.php?adminId="+adminId+"&password="+password);
-            Log.v("error","http://studentportal.website/echallan/adminlogin.php?adminId="+adminId+"&password="+password);
+            HttpPost hp=new HttpPost("http://studentportal.website/echallan/admin_login.php?adminId="+adminId+"&password="+password);
+            Log.v("error","http://studentportal.website/echallan/admin_login.php?adminId="+adminId+"&password="+password);
             HttpResponse hr = hc.execute(hp);
             String response= EntityUtils.toString(hr.getEntity()).trim();
             System.out.print(response);
@@ -102,6 +99,6 @@ public class AdminLoginActivity extends AppCompatActivity {
         catch(Exception e)
         {
             Log.v("error :",e.toString());
-        }*/
+        }
     }
 }

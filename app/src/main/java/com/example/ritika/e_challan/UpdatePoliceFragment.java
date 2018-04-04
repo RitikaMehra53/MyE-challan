@@ -1,6 +1,7 @@
 package com.example.ritika.e_challan;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
@@ -60,25 +61,9 @@ public class UpdatePoliceFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(getActivity(),"Hello try",Toast.LENGTH_LONG).show();
 
-                /*Fragment fragment = new UpdatePoliceFragment();
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                fragmentManager.beginTransaction()
-                        .replace(R.layout.update_police, fragment).commit();*/
-
-                /*Fragment fragment = new UpdatePoliceFragment();
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.layout.update_police, fragment);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
-*/
-                /*LinearLayout myLayout = (LinearLayout)getActivity().findViewById(R.id.existedlayout);
-
-                LayoutInflater inflater = (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                View hiddenInfo = inflater.inflate(R.layout.update_police,null);
-                myLayout.addView(hiddenInfo);*/
+                Intent intent=new Intent(getActivity(),UpdatePoliceActivity.class);
+                startActivity(intent);
 
 
 
