@@ -82,18 +82,18 @@ public class AddPoliceFragment extends Fragment {
         StrictMode.setThreadPolicy(sp);
 
 
-        String a= URLEncoder.encode(policeIdEdit.getText().toString());
-        String b= URLEncoder.encode(passwordEdit.getText().toString());
-        String c= URLEncoder.encode(phoneNoEdit.getText().toString());
+        String policeId= URLEncoder.encode(policeIdEdit.getText().toString());
+        String password= URLEncoder.encode(passwordEdit.getText().toString());
+        String phoneNo= URLEncoder.encode(phoneNoEdit.getText().toString());
 
-        String d= URLEncoder.encode(nameEdit.getText().toString());
+        String name= URLEncoder.encode(nameEdit.getText().toString());
 
 
 
         try
         {
             HttpClient hc= new DefaultHttpClient();
-            HttpPost hp=new HttpPost("http://studentportal.website/echallan/add_police_details.php?policeId="+a+"&password="+b+"&phoneNo="+c+"&name="+d);
+            HttpPost hp=new HttpPost("http://studentportal.website/echallan/add_police_details.php?policeId="+policeId+"&password="+password+"&phoneNo="+phoneNo+"&name="+name);
           //  Log.v("error","http://studentportal.website/echallan/add_police_details.php?policeId="+policeId+"&password="+password+"&phoneNo"+phoneNo+"&name="+name);
             HttpResponse hr = hc.execute(hp);
             String response= EntityUtils.toString(hr.getEntity()).trim();
