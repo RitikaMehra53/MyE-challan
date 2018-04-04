@@ -90,8 +90,7 @@ public class DeletePoliceFragment extends Fragment {
             if(result.equals("ok"))
             {
                 Toast.makeText(getActivity(),"Succesfully deleted",Toast.LENGTH_LONG).show();
-                //Intent i= new Inte(getActivity(),PolicePortalActivity.class);
-                //startActivity(i);
+
 
             }
             else
