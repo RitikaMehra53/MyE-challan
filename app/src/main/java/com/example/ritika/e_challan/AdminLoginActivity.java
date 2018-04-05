@@ -62,44 +62,44 @@ public class AdminLoginActivity extends AppCompatActivity {
         progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progress.show();
 
-        Intent i= new Intent(this,AdminPortalActivity.class);
-        startActivity(i);
 
-        String adminId= URLEncoder.encode(adminIdEdit.getText().toString());
-        String password=adminPassEdit.getText().toString();
+        String adminId = URLEncoder.encode(adminIdEdit.getText().toString());
+        String password = adminPassEdit.getText().toString();
+        if (adminId.isEmpty()) {
+            Toast.makeText(this, "Please enter admin id", Toast.LENGTH_LONG).show();
+        } else if (password.isEmpty()) {
+            Toast.makeText(this, "Please enter password", Toast.LENGTH_LONG).show();
 
-        /*try
-        {
-            HttpClient hc= new DefaultHttpClient();
-            HttpPost hp=new HttpPost("http://studentportal.website/echallan/admin_login.php?adminId="+adminId+"&password="+password);
-            Log.v("error","http://studentportal.website/echallan/admin_login.php?adminId="+adminId+"&password="+password);
-            HttpResponse hr = hc.execute(hp);
-            String response= EntityUtils.toString(hr.getEntity()).trim();
-            System.out.print(response);
+        } else {
 
-            if(response.equals("ok"))
-            {
-                // System.out.print("hello");
-                Intent i= new Intent(this,AdminPortalActivity.class);
-                startActivity(i);
-                finish();
-                SharedPreferences sp = getSharedPreferences("mydata", Context.MODE_PRIVATE);
-                SharedPreferences.Editor e = sp.edit();
-                e.putString("adminId", adminId);
-                e.putString("password", password);
-                e.commit();
 
+            try {
+                HttpClient hc = new DefaultHttpClient();
+                HttpPost hp = new HttpPost("http://studentportal.website/echallan/admin_login.php?adminId=" + adminId + "&password=" + password);
+                Log.v("error", "http://studentportal.website/echallan/admin_login.php?adminId=" + adminId + "&password=" + password);
+                HttpResponse hr = hc.execute(hp);
+                String response = EntityUtils.toString(hr.getEntity()).trim();
+                System.out.print(response);
+
+                if (response.equals("ok")) {
+                    // System.out.print("hello");
+                    Intent i = new Intent(this, AdminPortalActivity.class);
+                    startActivity(i);
+                    finish();
+                    SharedPreferences sp = getSharedPreferences("mydata", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor e = sp.edit();
+                    e.putString("adminId", adminId);
+                    e.putString("password", password);
+                    e.commit();
+
+                } else {
+                    progress.dismiss();
+                    Toast.makeText(AdminLoginActivity.this, "Wrong Admin Id and Password", Toast.LENGTH_LONG).show();
+                }
+
+            } catch (Exception e) {
+                Log.v("error :", e.toString());
             }
-            else
-            {
-                progress.dismiss();
-                Toast.makeText(AdminLoginActivity.this,"Wrong Admin Id and Password",Toast.LENGTH_LONG).show();
-            }
-
         }
-        catch(Exception e)
-        {
-            Log.v("error :",e.toString());
-        }*/
     }
 }

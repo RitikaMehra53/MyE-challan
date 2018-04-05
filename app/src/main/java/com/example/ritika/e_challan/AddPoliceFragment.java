@@ -82,38 +82,57 @@ public class AddPoliceFragment extends Fragment {
         StrictMode.setThreadPolicy(sp);
 
 
-        String policeId= URLEncoder.encode(policeIdEdit.getText().toString());
-        String password= URLEncoder.encode(passwordEdit.getText().toString());
-        String phoneNo= URLEncoder.encode(phoneNoEdit.getText().toString());
+        String a= URLEncoder.encode(policeIdEdit.getText().toString());
+        String b= URLEncoder.encode(passwordEdit.getText().toString());
+        String c= URLEncoder.encode(phoneNoEdit.getText().toString());
 
-        String name= URLEncoder.encode(nameEdit.getText().toString());
-
-
-
-        try
+        String d= URLEncoder.encode(nameEdit.getText().toString());
+        Toast.makeText(getActivity(),a+b+c+d,Toast.LENGTH_LONG).show();
+        if (a.isEmpty() ) {
+            Toast.makeText(getActivity(), "Invalid police id", Toast.LENGTH_LONG).show();
+        }
+        else if(b.isEmpty())
         {
-            HttpClient hc= new DefaultHttpClient();
-            HttpPost hp=new HttpPost("http://studentportal.website/echallan/add_police_details.php?policeId="+policeId+"&password="+password+"&phoneNo="+phoneNo+"&name="+name);
-          //  Log.v("error","http://studentportal.website/echallan/add_police_details.php?policeId="+policeId+"&password="+password+"&phoneNo"+phoneNo+"&name="+name);
-            HttpResponse hr = hc.execute(hp);
-            String response= EntityUtils.toString(hr.getEntity()).trim();
-            //System.out.print(response);
+            Toast.makeText(getActivity(), "Invalid password", Toast.LENGTH_LONG).show();
 
-            if(response.equals("ok"))
+        }
+        else if(c.isEmpty() )
+        {
+            Toast.makeText(getActivity(), "Invalid phone number", Toast.LENGTH_LONG).show();
+
+        }else if(d.isEmpty())
+        {
+            Toast.makeText(getActivity(), "Please enter name", Toast.LENGTH_LONG).show();
+
+        }
+        else {
+
+
+            try
             {
-                // System.out.print("hello");
-                Toast.makeText(getActivity(),"Successfully added !",Toast.LENGTH_LONG).show();
+                HttpClient hc= new DefaultHttpClient();
+                HttpPost hp=new HttpPost("http://studentportal.website/echallan/add_police_details.php?pId="+a+"&pass="+b+"&pNo="+c+"&name="+d);
+                //  Log.v("error","http://studentportal.website/echallan/add_police_details.php?policeId="+policeId+"&password="+password+"&phoneNo"+phoneNo+"&name="+name);
+                HttpResponse hr = hc.execute(hp);
+                String response= EntityUtils.toString(hr.getEntity()).trim();
+                //System.out.print(response);
+
+                if(response.equals("ok"))
+                {
+                    // System.out.print("hello");
+                    Toast.makeText(getActivity(),"Successfully added !",Toast.LENGTH_LONG).show();
+                }
+                else
+                {
+                    Toast.makeText(getActivity(),response,Toast.LENGTH_LONG).show();
+                }
             }
-            else
+            catch(Exception e)
             {
-                Toast.makeText(getActivity(),response,Toast.LENGTH_LONG).show();
+                Log.v("error :",e.toString());
             }
         }
-        catch(Exception e)
-        {
-            Log.v("error :",e.toString());
-        }
+
+
     }
-
-
 }

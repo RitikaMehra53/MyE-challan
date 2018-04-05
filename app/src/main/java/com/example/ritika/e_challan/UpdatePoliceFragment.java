@@ -19,6 +19,8 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.net.URLEncoder;
+
 public class UpdatePoliceFragment extends Fragment {
 
 
@@ -38,11 +40,8 @@ public class UpdatePoliceFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        View v = inflater.inflate(R.layout.fragment_update_police, container, false);
+        return inflater.inflate(R.layout.fragment_update_police, container, false);
 
-
-
-       return v;
 
     }
 
@@ -61,16 +60,43 @@ public class UpdatePoliceFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
+                Toast.makeText(getActivity(),"Hello try",Toast.LENGTH_LONG).show();
 
-                Intent intent=new Intent(getActivity(),UpdatePoliceActivity.class);
-                startActivity(intent);
+                /*Fragment fragment = new UpdatePoliceFragment();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                fragmentManager.beginTransaction()
+                        .replace(R.layout.update_police, fragment).commit();*/
+
+                /*Fragment fragment = new UpdatePoliceFragment();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.layout.update_police, fragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+*/
+                /*LinearLayout myLayout = (LinearLayout)getActivity().findViewById(R.id.existedlayout);
+
+                LayoutInflater inflater = (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                View hiddenInfo = inflater.inflate(R.layout.update_police,null);
+                myLayout.addView(hiddenInfo);*/
+
+                policeIdEdit = (EditText) getActivity().findViewById(R.id.editTextUpdatePoliceId);
 
 
-
+                update();
 
             }
         });
 
+    }
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public void update()
+    {
+        String policenId = URLEncoder.encode(policeIdEdit.getText().toString());
+
+        Intent i= new Intent(getActivity(),UpdatePoliceActivity.class);
+        i.putExtra("policeId",policenId);
+        startActivity(i);
     }
 
 

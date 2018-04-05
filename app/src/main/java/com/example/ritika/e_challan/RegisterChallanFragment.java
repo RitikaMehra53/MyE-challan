@@ -92,9 +92,8 @@ public class RegisterChallanFragment  extends Fragment {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public void register()
-    {
-        StrictMode.ThreadPolicy sp= new StrictMode.ThreadPolicy.Builder().permitAll().build();
+    public void register() {
+        StrictMode.ThreadPolicy sp = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(sp);
 
 // create instance of Random class
@@ -102,64 +101,68 @@ public class RegisterChallanFragment  extends Fragment {
 
         // Generate random integers in range 0 to 999
         int cNo = rand.nextInt(10000);
-        String challanNo= Integer.toString(cNo);
+        String challanNo = Integer.toString(cNo);
 
-        String name= URLEncoder.encode(nameEdit.getText().toString());
-        String phoneNo=phoneNoEdit.getText().toString();
-        String rcNo= URLEncoder.encode(rcNoEdit.getText().toString());
-        String licenceNo= URLEncoder.encode(licenceNoEdit.getText().toString());
-        String des= URLEncoder.encode(descriptionListEdit.getSelectedItem().toString());
-        String place= URLEncoder.encode(placeListEdit.getSelectedItem().toString());
+        String name = URLEncoder.encode(nameEdit.getText().toString());
+        String phoneNo = phoneNoEdit.getText().toString();
+        String rcNo = URLEncoder.encode(rcNoEdit.getText().toString());
+        String licenceNo = URLEncoder.encode(licenceNoEdit.getText().toString());
+        String des = URLEncoder.encode(descriptionListEdit.getSelectedItem().toString());
+        String place = URLEncoder.encode(placeListEdit.getSelectedItem().toString());
 
-        Calendar calender = Calendar.getInstance();
+        /*Calendar calender = Calendar.getInstance();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         String date = dateFormat.format(calender.getTimeInMillis()).toString();
 
         Calendar cal = Calendar.getInstance();
         SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm:ss a");
 
-        String time1 = timeFormat.format(cal.getTime()).toString();
-        Toast.makeText(getActivity(),"Name: \n" + name + ", phone no: " + phoneNo + ", Rc no: " + rcNo + ", licence no: "
+        String time1 = timeFormat.format(cal.getTime()).toString();*/
+        /*Toast.makeText(getActivity(), "Name: \n" + name + ", phone no: " + phoneNo + ", Rc no: " + rcNo + ", licence no: "
                 + licenceNo + ", description: "
                 + des + ", place: " + place + ", date: " + date + ", time: " + time1 + ", challanNo"
-                +challanNo ,Toast.LENGTH_LONG).show();
+                + challanNo, Toast.LENGTH_LONG).show();*/
+
+        if (name.isEmpty()) {
+            Toast.makeText(getActivity(), "Invalid name", Toast.LENGTH_LONG).show();
+        } else if (phoneNo.isEmpty()) {
+            Toast.makeText(getActivity(), "Invalid phone number", Toast.LENGTH_LONG).show();
+        } else if (rcNo.isEmpty()) {
+            Toast.makeText(getActivity(), "Invalid RC number", Toast.LENGTH_LONG).show();
+        } else if (licenceNo.isEmpty()) {
+            Toast.makeText(getActivity(), "Invalid licence number", Toast.LENGTH_LONG).show();
+        } else {
 
 
+            try {
 
 
-        try{
+                HttpClient hc = new DefaultHttpClient();
+                HttpPost hp = new HttpPost("http://studentportal.website/echallan/reg.php?challanNo=" + challanNo + "&name=" + name + "&phoneNo=" + phoneNo + "&rcNo=" + rcNo + "&licenceNo=" + licenceNo + "&place=" + place + "&des1=" + des);
+                //    Log.v("error","http://studentportal.website/echallan/reg.php?challanNo="+challanNo+"&name="+name+"&phoneNo="+phoneNo+"&rcNo="+rcNo+"&licenceNo="+licenceNo+"&date="+date+"&time="+time+"&description="+description+"&place="+place);
 
 
-            HttpClient hc= new DefaultHttpClient();
-            HttpPost hp=new HttpPost("http://studentportal.website/echallan/reg.php?challanNo="+challanNo+"&name="+name+"&phoneNo="+phoneNo+"&rcNo="+rcNo+"&licenceNo="+licenceNo+"&place="+place+"&des1="+des);
-        //    Log.v("error","http://studentportal.website/echallan/reg.php?challanNo="+challanNo+"&name="+name+"&phoneNo="+phoneNo+"&rcNo="+rcNo+"&licenceNo="+licenceNo+"&date="+date+"&time="+time+"&description="+description+"&place="+place);
+                Toast.makeText(getActivity(), "Hello try", Toast.LENGTH_LONG).show();
 
+                HttpResponse hr = hc.execute(hp);
+                String result = EntityUtils.toString(hr.getEntity()).trim();
 
-            Toast.makeText(getActivity(),"Hello try",Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), result, Toast.LENGTH_LONG).show();
 
-            HttpResponse hr = hc.execute(hp);
-            String result= EntityUtils.toString(hr.getEntity()).trim();
+                if (result.equals("ok")) {
+                    Toast.makeText(getActivity(), "Succesfully Registered", Toast.LENGTH_LONG).show();
+                    //Intent i= new Intent(getActivity(),PolicePortalActivity.class);
+                    //startActivity(i);
 
-            Toast.makeText(getActivity(),result,Toast.LENGTH_LONG).show();
+                } else {
+                    //progress.dismiss();
+                    Toast.makeText(getActivity(), "Try Again!", Toast.LENGTH_LONG).show();
+                }
 
-            if(result.equals("ok"))
-            {
-                Toast.makeText(getActivity(),"Succesfully Registered",Toast.LENGTH_LONG).show();
-                //Intent i= new Intent(getActivity(),PolicePortalActivity.class);
-                //startActivity(i);
-
+            } catch (Exception e) {
+                Toast.makeText(getActivity(), "Catchhh", Toast.LENGTH_LONG).show();
+                //Log.v("error :",e.toString());
             }
-            else
-            {
-                //progress.dismiss();
-                Toast.makeText(getActivity(),"Try Again!",Toast.LENGTH_LONG).show();
-            }
-
-        }
-        catch(Exception e)
-        {
-            Toast.makeText(getActivity(),"Catchhh",Toast.LENGTH_LONG).show();
-            //Log.v("error :",e.toString());
         }
     }
 }

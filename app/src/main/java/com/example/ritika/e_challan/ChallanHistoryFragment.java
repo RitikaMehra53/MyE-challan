@@ -45,7 +45,7 @@ import static android.R.attr.description;
 
 public class ChallanHistoryFragment extends Fragment {
 String rc;
-    String phoneNo,name,rcN,licenceNo,place,description,challanNo,payable,fineAmount,date1,time1;
+    //String phoneNo,name,rcN,licenceNo,place,description,challanNo,payable,fineAmount,date1,time1;
 
     EditText rcNo;
     Button searchButton;
@@ -91,10 +91,14 @@ String rc;
 
         rc= URLEncoder.encode(rcNo.getText().toString());
 
+        if (rc.isEmpty() || rc.matches("[A-Za-z0-9]{10}")) {
+            Toast.makeText(getActivity(), "Invalid police id", Toast.LENGTH_LONG).show();
+        }
+
 
         try{
 
-            AllData allData=new AllData();
+
             HttpClient hc= new DefaultHttpClient();
             HttpPost hp=new HttpPost("http://studentportal.website/echallan/hist.php?rcNo="+rc);
             //    Log.v("error","http://studentportal.website/echallan/reg.php?challanNo="+challanNo+"&name="+name+"&phoneNo="+phoneNo+"&rcNo="+rcNo+"&licenceNo="+licenceNo+"&date="+date+"&time="+time+"&description="+description+"&place="+place);
@@ -107,34 +111,44 @@ String rc;
 
             Toast.makeText(getActivity(),result,Toast.LENGTH_LONG).show();
 
+            AllData allData=new AllData();
+            JSONArray js= new JSONArray(result);
+            Log.d("CHALLAN",js.toString()+"\n");
+            for (int i=0;i<js.length();i++){
+                JSONObject a=new JSONObject();
+                a=js.getJSONObject(i);
+                String name=a.getString("name");
+                String challanNo=a.getString("challanNo");
+                String time1=a.getString("time");
+                String date1=a.getString("date1");
+                String place=a.getString("place");
+                String licenceNo=a.getString("licenceNo");
+                String rcN=a.getString("rcN");
+                String description=a.getString("description");
+                String fineAmount=a.getString("fineAmount");
+                String payable=a.getString("payable");
+                String phoneNo=a.getString("phoneNo");
+Toast.makeText(getActivity(),name+challanNo+time1+date1+place+licenceNo+rcN+description+fineAmount+payable+phoneNo,Toast.LENGTH_LONG);
+                Data data = new Data();
 
+                data.challanNo=challanNo;
+                data.name=name;
+                data.date1=date1;
+                data.description=description;
+                data.fineAmount=fineAmount;
+                data.licenceNo=licenceNo;
+                data.payable=payable;
+                data.phoneNo=phoneNo;
+                data.time1=time1;
+                data.place=place;
+                data.rcNo=rcN;
 
+                allData.details.add(data);
 
-            /*AllData allData=new AllData();
+               Toast.makeText(getActivity(),"Details "+data.name+data.rcNo,Toast.LENGTH_LONG).show();
+            }
 
-
-             String response= EntityUtils.toString(hr.getEntity());
-                Toast.makeText(getActivity(), result, Toast.LENGTH_LONG).show();
-                JSONObject js= new JSONObject(response);
-                name= js.getString("name");
-                challanNo = js.getString("challanNo");
-                phoneNo = js.getString("phoneNo");
-                rcN = js.getString("rcN");
-                licenceNo = js.getString("licenceNo");
-                date1 = js.getString("date1");
-                time1 = js.getString("time1");
-                description =js.getString("description");
-                place = js.getString("place");
-                payable = js.getString("payable");
-                fineAmount = js.getString("fineAmount");*/
-
-            /*String myJSON=result.body().string();
-            JSONObject jsonObject=new JSONObject(myJSON);
-            JSONArray jsonArray=jsonObject.getJSONArray("articles");*/
-
-
-
-            challanNo="101";
+            /*challanNo="101";
             name="ABC";;
             date1="2/3/18";
             description="Helmet";
@@ -144,26 +158,7 @@ String rc;
             phoneNo="1234456666";
             time1="12:45:50";
             place="Ambala";
-            rcN="RC123";
-
-
-            Data data = new Data();
-
-            data.challanNo=challanNo;
-            data.name=name;
-            data.date1=date1;
-            data.description=description;
-            data.fineAmount=fineAmount;
-            data.licenceNo=licenceNo;
-            data.payable=payable;
-            data.phoneNo=phoneNo;
-            data.time1=time1;
-            data.place=place;
-            data.rcNo=rcN;
-
-            allData.details.add(data);
-
-
+            rcN="RC123";*/
 
             HistoryBaseAdapter historyBaseAdapter=new HistoryBaseAdapter(getActivity(),allData.details);
             listView.setAdapter(historyBaseAdapter);

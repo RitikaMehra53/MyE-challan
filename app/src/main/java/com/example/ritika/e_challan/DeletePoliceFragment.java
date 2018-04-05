@@ -51,15 +51,12 @@ public class DeletePoliceFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         deletePoliceButton =(Button)getActivity().findViewById(R.id.buttonDeletePolice);
-        deletePoliceButton.setOnClickListener(new View.OnClickListener(){
+        deletePoliceButton.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onClick(View v) {
                 policeIdEdit = (EditText) getActivity().findViewById(R.id.editTextDeletePoliceId);
-
-
                 delete();
-
             }
         });
     }
@@ -72,16 +69,17 @@ public class DeletePoliceFragment extends Fragment {
         StrictMode.setThreadPolicy(sp);
         String policeId= URLEncoder.encode(policeIdEdit.getText().toString());
 // create instance of Random class
+
+        if (policeId.isEmpty() || policeId.matches("[A-Za-z0-9]{10}")) {
+            Toast.makeText(getActivity(), "Invalid police id", Toast.LENGTH_LONG).show();
+        }
+
         try{
 
 
             HttpClient hc= new DefaultHttpClient();
             HttpPost hp=new HttpPost("http://studentportal.website/echallan/delete_police_details.php?policeId="+policeId);
             //    Log.v("error","http://studentportal.website/echallan/reg.php?challanNo="+challanNo+"&name="+name+"&phoneNo="+phoneNo+"&rcNo="+rcNo+"&licenceNo="+licenceNo+"&date="+date+"&time="+time+"&description="+description+"&place="+place);
-
-
-           // Toast.makeText(getActivity(),"Hello try",Toast.LENGTH_LONG).show();
-
             HttpResponse hr = hc.execute(hp);
             String result= EntityUtils.toString(hr.getEntity()).trim();
 
@@ -96,7 +94,7 @@ public class DeletePoliceFragment extends Fragment {
             else
             {
                 //progress.dismiss();
-                Toast.makeText(getActivity(),"Try Again!",Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(),result,Toast.LENGTH_LONG).show();
             }
 
         }
@@ -106,5 +104,6 @@ public class DeletePoliceFragment extends Fragment {
             //Log.v("error :",e.toString());
         }
     }
+
 }
 

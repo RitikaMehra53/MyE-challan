@@ -286,7 +286,7 @@
                 </TableRow>
 
                 <Button
-                    android:id="@+id/buttonAddPolice"
+                    android:id="@+id/button_update_challan"
                     style="?android:textAppearanceSmall"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

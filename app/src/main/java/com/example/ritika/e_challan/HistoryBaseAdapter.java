@@ -28,8 +28,7 @@ public class HistoryBaseAdapter extends BaseAdapter{
 
     @Override
     public int getCount() {
-        return 5;
-        //return data.size();
+        return data.size();
     }
 
     @Override
@@ -47,10 +46,10 @@ public class HistoryBaseAdapter extends BaseAdapter{
         LayoutInflater inflater = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view1 = inflater.inflate(R.layout.history_view, null);
 
-       TextView textViewChallanNo=(TextView)view1.findViewById(R.id.textViewFetchChallanNo);
+        TextView textViewChallanNo=(TextView)view1.findViewById(R.id.textViewFetchChallanNo);
         textViewChallanNo.setText(data.get(position).challanNo);
 
-       TextView textViewChallanName=(TextView)view1.findViewById(R.id.textViewFetchName);
+        TextView textViewChallanName=(TextView)view1.findViewById(R.id.textViewFetchName);
         textViewChallanName.setText(data.get(position).name);
 
         TextView textViewChallanLicenceNo=(TextView)view1.findViewById(R.id.textViewFetchLicenceNo);
@@ -64,6 +63,9 @@ public class HistoryBaseAdapter extends BaseAdapter{
 
         TextView textViewChallanPlace=(TextView)view1.findViewById(R.id.textViewFetchPlace);
         textViewChallanPlace.setText(data.get(position).place);
+
+        TextView textViewDescription=(TextView)view1.findViewById(R.id.textViewFetchDescription);
+        textViewDescription.setText(data.get(position).description);
 
         return view1;
     }

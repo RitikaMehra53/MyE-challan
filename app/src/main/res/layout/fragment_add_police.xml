@@ -51,7 +51,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif"
-                    android:text="ADD POLICE"
+                    android:text="ADD_POLICE_DETAILS"
                     android:textAlignment="center"
                     android:textColor="#1f1f6e"
                     android:textSize="25sp"
@@ -114,7 +114,7 @@
                     android:background="@drawable/form_button_background"
                     android:textStyle="bold"
                     android:textSize="16sp"
-                    android:onClick="add_police_details"
+                    android:onClick="addPolice"
                     android:textAllCaps="false"
                     android:textColor="#ffffff"
                     android:fontFamily="sans-serif"/>
