@@ -13,17 +13,17 @@
         android:layout_marginTop="10sp">
 
         <TextView
-            android:id="@+id/textViewHeaderChallanNo"
-            android:layout_width="50sp"
+            android:id="@+id/textViewPendingHeaderChallanNo"
+            android:layout_width="80sp"
             android:layout_height="wrap_content"
-            android:layout_margin="5sp"
-            android:textSize="12sp"
+            android:layout_margin="20sp"
+            android:textSize="18sp"
             android:textColor="#ffffff"
             android:text="Challan No"
             android:textStyle="bold"/>
 
 
-        <TextView
+        <!--<TextView
             android:id="@+id/textViewHeaderName"
             android:layout_width="50sp"
             android:textColor="#ffffff"
@@ -31,7 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="5sp"
             android:text="Name of Violator"
-             android:textStyle="bold"/>
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/textViewHeaderLicenceNo"
@@ -41,36 +41,36 @@
             android:layout_height="wrap_content"
             android:layout_margin="5sp"
             android:text="Licence No."
-            android:textStyle="bold"/>
+            android:textStyle="bold"/>-->
         <TextView
-            android:id="@+id/textViewHeaderDate"
-            android:layout_width="50sp"
+            android:id="@+id/textViewPendingHeaderDate"
+            android:layout_width="80sp"
             android:layout_height="wrap_content"
-            android:layout_margin="5sp"
+            android:layout_margin="20sp"
             android:textColor="#ffffff"
-            android:textSize="12sp"
+            android:textSize="18sp"
             android:text="Date"
             android:textStyle="bold"/>
 
-        <TextView
-            android:id="@+id/textViewHeaderTime"
-            android:layout_width="50sp"
-            android:textColor="#ffffff"
-            android:layout_height="wrap_content"
-            android:layout_margin="5sp"
-            android:textSize="12sp"
-            android:text="Time"
-            android:textStyle="bold"/>
+        <!--<TextView-->
+            <!--android:id="@+id/textViewHeaderTime"-->
+            <!--android:layout_width="50sp"-->
+            <!--android:textColor="#ffffff"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_margin="5sp"-->
+            <!--android:textSize="12sp"-->
+            <!--android:text="Time"-->
+            <!--android:textStyle="bold"/>-->
 
-        <TextView
-            android:id="@+id/textViewHeaderPlace"
-            android:layout_width="50sp"
-            android:textColor="#ffffff"
-            android:layout_height="wrap_content"
-            android:layout_margin="5sp"
-            android:textSize="12sp"
-            android:text="Place"
-            android:textStyle="bold"/>
+        <!--<TextView-->
+            <!--android:id="@+id/textViewHeaderPlace"-->
+            <!--android:layout_width="50sp"-->
+            <!--android:textColor="#ffffff"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_margin="5sp"-->
+            <!--android:textSize="12sp"-->
+            <!--android:text="Place"-->
+            <!--android:textStyle="bold"/>-->
 
         <!--<TextView
             android:id="@+id/textViewHeaderDescription"
@@ -80,26 +80,26 @@
             android:text="Description"
              android:textColor="#ffffff"
              android:textSize="12sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold"/>-->
 
         <TextView
-            android:id="@+id/textViewHeaderFineAmount"
-            android:layout_width="50sp"
+            android:id="@+id/textViewPendingHeaderFineAmount"
+            android:layout_width="80sp"
             android:layout_height="wrap_content"
-            android:layout_margin="5sp"
+            android:layout_margin="20sp"
             android:text="Fine"
              android:textColor="#ffffff"
-            android:textSize="12sp"
-            android:textStyle="bold"/>
+            android:textSize="20sp"
+            android:textStyle="bold"/>-->
 
-            <TextView
-            android:id="@+id/textViewHeaderPayable"
-            android:layout_width="50sp"
+            <!--<TextView
+            android:id="@+id/textViewPendingHeaderPayable"
+            android:layout_width="80sp"
             android:layout_height="wrap_content"
-            android:layout_margin="5sp"
+            android:layout_margin="20sp"
             android:text="Payable"
             android:textColor="#ffffff"
-            android:textSize="12sp"
+            android:textSize="18sp"
             android:textStyle="bold"/>-->
     </TableRow>
 
@@ -110,17 +110,17 @@
         android:background="#097aca">
 
         <TextView
-            android:id="@+id/textViewFetchChallanNo"
-            android:layout_width="50sp"
+            android:id="@+id/textViewPendingFetchChallanNo"
+            android:layout_width="80sp"
             android:layout_height="wrap_content"
-            android:layout_margin="5sp"
-            android:textSize="12sp"
+            android:layout_margin="20sp"
+            android:textSize="18sp"
             android:textColor="#ffffff"
             android:text="Challan No"
             android:textStyle="bold"/>
 
 
-        <TextView
+        <!--<TextView
             android:id="@+id/textViewFetchName"
             android:layout_width="50sp"
             android:textColor="#ffffff"
@@ -138,20 +138,20 @@
             android:layout_margin="5sp"
             android:textSize="12sp"
             android:text="Licence No."
-            android:textStyle="bold"/>
+            android:textStyle="bold"/>-->
 
         <TextView
-            android:id="@+id/textViewFetchDate"
-            android:layout_width="50sp"
+            android:id="@+id/textViewPendingFetchDate"
+            android:layout_width="80sp"
             android:layout_height="wrap_content"
-            android:layout_margin="5sp"
+            android:layout_margin="20sp"
             android:textColor="#ffffff"
-            android:textSize="12sp"
+            android:textSize="18sp"
             android:text="Date"
             android:textStyle="bold"/>
 
 
-        <TextView
+       <!-- <TextView
             android:id="@+id/textViewFetchTime"
             android:layout_width="50sp"
             android:textColor="#ffffff"
@@ -171,7 +171,7 @@
             android:layout_margin="5sp"
             android:textSize="12sp"
             android:text="Place"
-            android:textStyle="bold"/>
+            android:textStyle="bold"/>-->
 
         <!--<TextView
             android:id="@+id/textViewFetchDescription"
@@ -181,26 +181,26 @@
             android:text="Description"
             android:textSize="12sp"
              android:textColor="#ffffff"
-            android:textStyle="bold"/>
+            android:textStyle="bold"/>-->
 
         <TextView
-            android:id="@+id/textViewFetchFineAmount"
-            android:layout_width="50sp"
+            android:id="@+id/textViewPeningFetchFineAmount"
+            android:layout_width="80sp"
             android:layout_height="wrap_content"
-            android:layout_margin="5sp"
+            android:layout_margin="20sp"
             android:text="Fine"
              android:textColor="#ffffff"
-            android:textSize="12sp"
+            android:textSize="18sp"
             android:textStyle="bold"/>
 
-            <TextView
-            android:id="@+id/textViewFetchPayable"
-            android:layout_width="50sp"
+            <!--<TextView
+            android:id="@+id/textViewPendingFetchPayable"
+            android:layout_width="80sp"
             android:layout_height="wrap_content"
-            android:layout_margin="5sp"
+            android:layout_margin="20sp"
             android:text="Payable"
              android:textColor="#ffffff"
-            android:textSize="12sp"
+            android:textSize="18sp"
             android:textStyle="bold"/>-->
     </TableRow>
 

@@ -49,6 +49,7 @@ String rc;
 
     EditText rcNo;
     Button searchButton;
+    ListView listView;
     public ChallanHistoryFragment() {
         // Required empty public constructor
     }
@@ -75,7 +76,7 @@ String rc;
             public void onClick(View v) {
 
                 rcNo =(EditText)getActivity().findViewById(R.id.editTextChallanHistoryRCNo);
-
+                listView = (ListView) getActivity().findViewById(R.id.listViewChallanHistorylist);
 
                 search();
 
@@ -93,9 +94,9 @@ String rc;
 
         try{
 
-
+            AllData allData=new AllData();
             HttpClient hc= new DefaultHttpClient();
-            HttpPost hp=new HttpPost("http://studentportal.website/echallan/history.php?rcNo="+rc);
+            HttpPost hp=new HttpPost("http://studentportal.website/echallan/hist.php?rcNo="+rc);
             //    Log.v("error","http://studentportal.website/echallan/reg.php?challanNo="+challanNo+"&name="+name+"&phoneNo="+phoneNo+"&rcNo="+rcNo+"&licenceNo="+licenceNo+"&date="+date+"&time="+time+"&description="+description+"&place="+place);
 
 
@@ -106,22 +107,68 @@ String rc;
 
             Toast.makeText(getActivity(),result,Toast.LENGTH_LONG).show();
 
+
+
+
+            /*AllData allData=new AllData();
+
+
              String response= EntityUtils.toString(hr.getEntity());
                 Toast.makeText(getActivity(), result, Toast.LENGTH_LONG).show();
                 JSONObject js= new JSONObject(response);
                 name= js.getString("name");
-            challanNo = js.getString("challanNo");
-            phoneNo = js.getString("phoneNo");
-            rcN = js.getString("rcN");
-            licenceNo = js.getString("licenceNo");
-            date1 = js.getString("date1");
+                challanNo = js.getString("challanNo");
+                phoneNo = js.getString("phoneNo");
+                rcN = js.getString("rcN");
+                licenceNo = js.getString("licenceNo");
+                date1 = js.getString("date1");
                 time1 = js.getString("time1");
                 description =js.getString("description");
                 place = js.getString("place");
-            payable = js.getString("payable");
-            fineAmount = js.getString("fineAmount");
+                payable = js.getString("payable");
+                fineAmount = js.getString("fineAmount");*/
 
-            Toast.makeText(getActivity(),"Print Values ---"+name +challanNo+phoneNo +rcN+licenceNo+date1+time1+description+place+payable+fineAmount,Toast.LENGTH_LONG).show();
+            /*String myJSON=result.body().string();
+            JSONObject jsonObject=new JSONObject(myJSON);
+            JSONArray jsonArray=jsonObject.getJSONArray("articles");*/
+
+
+
+            challanNo="101";
+            name="ABC";;
+            date1="2/3/18";
+            description="Helmet";
+            fineAmount="300";
+            licenceNo="lic123";
+            payable="No";
+            phoneNo="1234456666";
+            time1="12:45:50";
+            place="Ambala";
+            rcN="RC123";
+
+
+            Data data = new Data();
+
+            data.challanNo=challanNo;
+            data.name=name;
+            data.date1=date1;
+            data.description=description;
+            data.fineAmount=fineAmount;
+            data.licenceNo=licenceNo;
+            data.payable=payable;
+            data.phoneNo=phoneNo;
+            data.time1=time1;
+            data.place=place;
+            data.rcNo=rcN;
+
+            allData.details.add(data);
+
+
+
+            HistoryBaseAdapter historyBaseAdapter=new HistoryBaseAdapter(getActivity(),allData.details);
+            listView.setAdapter(historyBaseAdapter);
+
+
 
 
                 /*e13.setText(full_name);

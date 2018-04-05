@@ -16,7 +16,7 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <LinearLayout
                 android:id="@+id/email_login_form"
@@ -72,6 +72,7 @@
 
                 <Button
                     android:onClick="get_pending_challans"
+                    android:id="@+id/buttonSearchPendingChallan"
                     style="?android:textAppearanceSmall"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -83,6 +84,12 @@
                     android:textAllCaps="false"
                     android:textColor="#ffffff"
                     android:fontFamily="sans-serif"/>
+
+                <ListView
+                    android:layout_marginTop="20sp"
+                    android:id="@+id/listViewChallanPendinglist"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
             </LinearLayout>
         </ScrollView>
 

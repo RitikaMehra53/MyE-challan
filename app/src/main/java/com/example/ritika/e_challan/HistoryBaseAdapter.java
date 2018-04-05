@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,38 +19,52 @@ import java.util.List;
 public class HistoryBaseAdapter extends BaseAdapter{
 
     Context ctx;
-    List<ChallanDetails> details;
-    HistoryBaseAdapter(Context ctx, List<ChallanDetails> details){
+    ArrayList<Data> data;
+    HistoryBaseAdapter(Context ctx,ArrayList<Data> data){
 
         this.ctx=ctx;
-        this.details=details;
+        this.data=data;
     }
 
     @Override
     public int getCount() {
         return 5;
+        //return data.size();
     }
 
     @Override
-    public Object getItem(int i) {
+    public Object getItem(int position) {
         return null;
     }
 
     @Override
-    public long getItemId(int i) {
+    public long getItemId(int position) {
         return 0;
     }
 
     @Override
-    public View getView(int i, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view1 = inflater.inflate(R.layout.history_view, null);
-       /* TextView textViewChallanNo = (TextView) view1.findViewById(R.id.textViewChallanNo);
-        TextView textViewName= (TextView) view1.findViewById(R.id.textViewName);
 
-        textViewChallanNo.setText(details.get(i).getChallanNo()+ "");
+       TextView textViewChallanNo=(TextView)view1.findViewById(R.id.textViewFetchChallanNo);
+        textViewChallanNo.setText(data.get(position).challanNo);
 
-        textViewName.setText(details.get(i).getName()+ "");*/
+       TextView textViewChallanName=(TextView)view1.findViewById(R.id.textViewFetchName);
+        textViewChallanName.setText(data.get(position).name);
+
+        TextView textViewChallanLicenceNo=(TextView)view1.findViewById(R.id.textViewFetchLicenceNo);
+        textViewChallanLicenceNo.setText(data.get(position).licenceNo);
+
+        TextView textViewDate=(TextView)view1.findViewById(R.id.textViewFetchDate);
+        textViewDate.setText(data.get(position).date1);
+
+        TextView textViewTime=(TextView)view1.findViewById(R.id.textViewFetchTime);
+        textViewTime.setText(data.get(position).time1);
+
+        TextView textViewChallanPlace=(TextView)view1.findViewById(R.id.textViewFetchPlace);
+        textViewChallanPlace.setText(data.get(position).place);
+
         return view1;
     }
 

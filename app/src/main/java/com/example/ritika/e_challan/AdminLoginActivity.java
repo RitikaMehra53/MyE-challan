@@ -62,12 +62,13 @@ public class AdminLoginActivity extends AppCompatActivity {
         progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progress.show();
 
-
+        Intent i= new Intent(this,AdminPortalActivity.class);
+        startActivity(i);
 
         String adminId= URLEncoder.encode(adminIdEdit.getText().toString());
         String password=adminPassEdit.getText().toString();
 
-        try
+        /*try
         {
             HttpClient hc= new DefaultHttpClient();
             HttpPost hp=new HttpPost("http://studentportal.website/echallan/admin_login.php?adminId="+adminId+"&password="+password);
@@ -99,6 +100,6 @@ public class AdminLoginActivity extends AppCompatActivity {
         catch(Exception e)
         {
             Log.v("error :",e.toString());
-        }
+        }*/
     }
 }

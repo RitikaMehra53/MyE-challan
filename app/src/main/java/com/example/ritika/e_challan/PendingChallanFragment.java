@@ -1,13 +1,17 @@
 package com.example.ritika.e_challan;
 
+import android.os.Build;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import org.apache.http.HttpResponse;
@@ -24,6 +28,8 @@ public class PendingChallanFragment extends Fragment {
     String phoneNo,name,rcN,licenceNo,place,description,challanNo,payable,fineAmount,date1,time1;
 
     EditText rcNo;
+    Button searchPendingButton;
+    ListView listView;
 
     public PendingChallanFragment() {
         // Required empty public constructor
@@ -48,17 +54,34 @@ public class PendingChallanFragment extends Fragment {
      public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+         searchPendingButton=(Button) getActivity().findViewById(R.id.buttonSearchPendingChallan);
+         searchPendingButton.setOnClickListener(new View.OnClickListener(){
+             @RequiresApi(api = Build.VERSION_CODES.N)
+             @Override
+             public void onClick(View v) {
+
+                 rcNo =(EditText)getActivity().findViewById(R.id.editTextPendingChallanRCNo);
+                 listView = (ListView) getActivity().findViewById(R.id.listViewChallanPendinglist);
+
+                 get_pending_challans();
+
+             }
+         });
+
 
     }
-    public void get_pending_challans(View v){
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public void get_pending_challans(){
 
         rc= URLEncoder.encode(rcNo.getText().toString());
 
 
         try{
 
+            AllData allData=new AllData();
 
-            HttpClient hc= new DefaultHttpClient();
+            /*HttpClient hc= new DefaultHttpClient();
             HttpPost hp=new HttpPost("http://studentportal.website/echallan/pending.php?rcNo="+rc);
             //    Log.v("error","http://studentportal.website/echallan/reg.php?challanNo="+challanNo+"&name="+name+"&phoneNo="+phoneNo+"&rcNo="+rcNo+"&licenceNo="+licenceNo+"&date="+date+"&time="+time+"&description="+description+"&place="+place);
 
@@ -86,7 +109,7 @@ public class PendingChallanFragment extends Fragment {
             fineAmount = js.getString("fineAmount");
 
             Toast.makeText(getActivity(),"Print Values ---"+name +challanNo+phoneNo +rcN+licenceNo+date1+time1+description+place+payable+fineAmount,Toast.LENGTH_LONG).show();
-
+*/
 
                 /*e13.setText(full_name);
                 e14.setText(email);
@@ -97,6 +120,41 @@ public class PendingChallanFragment extends Fragment {
                 e20.setText(address);
                 e21.setText(blood_group);
                 e22.setText(hb);*/
+
+
+            challanNo="101";
+            name="ABC";;
+            date1="2/3/18";
+            description="Helmet";
+            fineAmount="300";
+            licenceNo="lic123";
+            payable="No";
+            phoneNo="1234456666";
+            time1="12:45:50";
+            place="Ambala";
+            rcN="RC123";
+
+
+            Data data = new Data();
+
+            data.challanNo=challanNo;
+            data.name=name;
+            data.date1=date1;
+            data.description=description;
+            data.fineAmount=fineAmount;
+            data.licenceNo=licenceNo;
+            data.payable=payable;
+            data.phoneNo=phoneNo;
+            data.time1=time1;
+            data.place=place;
+            data.rcNo=rcN;
+
+            allData.details.add(data);
+
+
+
+            PendingBaseAdapter pendingBaseAdapter=new PendingBaseAdapter(getActivity(),allData.details);
+            listView.setAdapter(pendingBaseAdapter);
 
 
 
