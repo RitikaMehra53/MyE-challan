@@ -44,12 +44,13 @@ import java.util.List;
 import static android.R.attr.description;
 
 public class ChallanHistoryFragment extends Fragment {
-String rc;
+    String rc;
     //String phoneNo,name,rcN,licenceNo,place,description,challanNo,payable,fineAmount,date1,time1;
 
     EditText rcNo;
     Button searchButton;
-    ListView listView;
+    ListView  listView;
+
     public ChallanHistoryFragment() {
         // Required empty public constructor
     }
@@ -77,7 +78,6 @@ String rc;
 
                 rcNo =(EditText)getActivity().findViewById(R.id.editTextChallanHistoryRCNo);
                 listView = (ListView) getActivity().findViewById(R.id.listViewChallanHistorylist);
-
                 search();
 
             }
@@ -104,50 +104,65 @@ String rc;
             //    Log.v("error","http://studentportal.website/echallan/reg.php?challanNo="+challanNo+"&name="+name+"&phoneNo="+phoneNo+"&rcNo="+rcNo+"&licenceNo="+licenceNo+"&date="+date+"&time="+time+"&description="+description+"&place="+place);
 
 
-            Toast.makeText(getActivity(),"Hello try",Toast.LENGTH_LONG).show();
+           // Toast.makeText(getActivity(),"Hello try",Toast.LENGTH_LONG).show();
 
             HttpResponse hr = hc.execute(hp);
             String result= EntityUtils.toString(hr.getEntity()).trim();
 
-            Toast.makeText(getActivity(),result,Toast.LENGTH_LONG).show();
+            //Toast.makeText(getActivity(),result,Toast.LENGTH_LONG).show();
 
-            AllData allData=new AllData();
+
             JSONArray js= new JSONArray(result);
             Log.d("CHALLAN",js.toString()+"\n");
+
+
+            AllData allData=new AllData();
             for (int i=0;i<js.length();i++){
                 JSONObject a=new JSONObject();
                 a=js.getJSONObject(i);
                 String name=a.getString("name");
+                // Toast.makeText(getActivity(),name,Toast.LENGTH_LONG).show();
                 String challanNo=a.getString("challanNo");
-                String time1=a.getString("time");
                 String date1=a.getString("date1");
                 String place=a.getString("place");
+
+                String time1=a.getString("time1");
+                // Toast.makeText(getActivity(),challanNo+time1+date1+place,Toast.LENGTH_LONG).show();
+
                 String licenceNo=a.getString("licenceNo");
                 String rcN=a.getString("rcN");
                 String description=a.getString("description");
                 String fineAmount=a.getString("fineAmount");
+
                 String payable=a.getString("payable");
                 String phoneNo=a.getString("phoneNo");
-Toast.makeText(getActivity(),name+challanNo+time1+date1+place+licenceNo+rcN+description+fineAmount+payable+phoneNo,Toast.LENGTH_LONG);
-                Data data = new Data();
+                //Toast.makeText(getActivity(),licenceNo+rcN+description+fineAmount,Toast.LENGTH_LONG).show();
+                //  Toast.makeText(getActivity(),payable+phoneNo,Toast.LENGTH_LONG).show();
 
-                data.challanNo=challanNo;
-                data.name=name;
-                data.date1=date1;
-                data.description=description;
-                data.fineAmount=fineAmount;
-                data.licenceNo=licenceNo;
-                data.payable=payable;
-                data.phoneNo=phoneNo;
-                data.time1=time1;
-                data.place=place;
-                data.rcNo=rcN;
+                Data data1 = new Data();
 
-                allData.details.add(data);
+                data1.challanNo=challanNo;
+                data1.name=name;
+                data1.date1=date1;
+                data1.description=description;
+                data1.fineAmount=fineAmount;
+                data1.licenceNo=licenceNo;
+                data1.payable=payable;
+                data1.phoneNo=phoneNo;
+                data1.time1=time1;
+                data1.place=place;
+                data1.rcNo=rcN;
 
-               Toast.makeText(getActivity(),"Details "+data.name+data.rcNo,Toast.LENGTH_LONG).show();
+                allData.details.add(data1);
+
+                Toast.makeText(getActivity(),"Details......... "+allData.details,Toast.LENGTH_LONG).show();
+
+
+
             }
 
+            HistoryBaseAdapter historyBaseAdapter=new HistoryBaseAdapter(getActivity(),allData.details);
+            listView.setAdapter(historyBaseAdapter);
             /*challanNo="101";
             name="ABC";;
             date1="2/3/18";
@@ -160,12 +175,6 @@ Toast.makeText(getActivity(),name+challanNo+time1+date1+place+licenceNo+rcN+desc
             place="Ambala";
             rcN="RC123";*/
 
-            HistoryBaseAdapter historyBaseAdapter=new HistoryBaseAdapter(getActivity(),allData.details);
-            listView.setAdapter(historyBaseAdapter);
-
-
-
-
                 /*e13.setText(full_name);
                 e14.setText(email);
 
@@ -175,8 +184,6 @@ Toast.makeText(getActivity(),name+challanNo+time1+date1+place+licenceNo+rcN+desc
                 e20.setText(address);
                 e21.setText(blood_group);
                 e22.setText(hb);*/
-
-
 
         }
         catch(Exception e)

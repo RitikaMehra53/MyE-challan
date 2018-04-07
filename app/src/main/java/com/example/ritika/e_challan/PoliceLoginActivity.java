@@ -1,7 +1,9 @@
 package com.example.ritika.e_challan;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.StrictMode;
@@ -72,6 +74,8 @@ public class PoliceLoginActivity extends AppCompatActivity {
         String password = passEdit.getText().toString();
 
 
+
+
         if (policeId.isEmpty() ) {
             Toast.makeText(this, "Please enter police id", Toast.LENGTH_LONG).show();
         }
@@ -97,11 +101,11 @@ public class PoliceLoginActivity extends AppCompatActivity {
                     Intent i = new Intent(this, PolicePortalActivity.class);
                     startActivity(i);
                     finish();
-                /*SharedPreferences sp = getSharedPreferences("mydata", Context.MODE_PRIVATE);
+                SharedPreferences sp = getSharedPreferences("mydata", Context.MODE_PRIVATE);
                 SharedPreferences.Editor e = sp.edit();
                 e.putString("policeId", policeId);
                 e.putString("password", password);
-                e.commit();*/
+                e.commit();
 
                 } else {
                     if (!policeId.matches("[a-zA-Z0-9]+")) {

@@ -20,10 +20,10 @@ public class HistoryBaseAdapter extends BaseAdapter{
 
     Context ctx;
     ArrayList<Data> data;
-    HistoryBaseAdapter(Context ctx,ArrayList<Data> data){
+    HistoryBaseAdapter(Context context,ArrayList<Data> fetchDetais){
 
-        this.ctx=ctx;
-        this.data=data;
+        ctx=context;
+        data=fetchDetais;
     }
 
     @Override
