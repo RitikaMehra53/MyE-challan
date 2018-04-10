@@ -67,6 +67,8 @@ int cNo=000001;
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_register_challan, container, false);
 
+
+
     }
 
     @Override
