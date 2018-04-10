@@ -42,6 +42,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 import java.util.SimpleTimeZone;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class RegisterChallanFragment  extends Fragment {
 
@@ -52,7 +54,7 @@ public class RegisterChallanFragment  extends Fragment {
     EditText rcNoEdit;
     EditText licenceNoEdit;
     Button register;
-
+int cNo=000001;
     public RegisterChallanFragment() {
         // Required empty public constructor
     }
@@ -96,13 +98,12 @@ public class RegisterChallanFragment  extends Fragment {
     {
         StrictMode.ThreadPolicy sp= new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(sp);
+            cNo++;
 
-// create instance of Random class
-        Random rand = new Random();
 
-        // Generate random integers in range 0 to 999
-        int cNo = rand.nextInt(10000);
-        String challanNo= Integer.toString(cNo);
+
+        String challanNo = Integer.toString(cNo);
+
 
         String name= URLEncoder.encode(nameEdit.getText().toString());
         String phoneNo=phoneNoEdit.getText().toString();
@@ -122,8 +123,41 @@ public class RegisterChallanFragment  extends Fragment {
         Toast.makeText(getActivity(),"Name: \n" + name + ", phone no: " + phoneNo + ", Rc no: " + rcNo + ", licence no: "
                 + licenceNo + ", description: "
                 + des + ", place: " + place + ", date: " + date + ", time: " + time1 + ", challanNo"
+
                 +challanNo ,Toast.LENGTH_LONG).show();
 
+
+
+        Pattern pattern = Pattern.compile("[a-zA-Z0-9]*");
+
+        Matcher rc = pattern.matcher(rcNo);
+        Matcher licence = pattern.matcher(licenceNo);
+
+        // Matcher pass = pattern.matcher(password);
+        if (name.isEmpty()) {
+            Toast.makeText(getActivity(), "Invalid name", Toast.LENGTH_LONG).show();
+        }
+        if (phoneNo.isEmpty()) {
+            Toast.makeText(getActivity(), "Please enter phone number", Toast.LENGTH_LONG).show();
+        }
+        if(phoneNo.length()!=10 )
+        {
+            Toast.makeText(getActivity(), "Invalid phone number", Toast.LENGTH_LONG).show();
+
+        }
+
+         if(rc.matches())
+        {
+            Toast.makeText(getActivity(), "Invalid RC number ", Toast.LENGTH_LONG).show();
+
+        }
+
+
+        else if (rcNo.isEmpty()) {
+            Toast.makeText(getActivity(), "Invalid RC number", Toast.LENGTH_LONG).show();
+        }
+
+        else {
 
 
 
@@ -137,10 +171,15 @@ public class RegisterChallanFragment  extends Fragment {
 
             Toast.makeText(getActivity(),"Hello try",Toast.LENGTH_LONG).show();
 
+
             HttpResponse hr = hc.execute(hp);
             String result= EntityUtils.toString(hr.getEntity()).trim();
 
+                //Toast.makeText(getActivity(), result, Toast.LENGTH_LONG).show();
+
+
             Toast.makeText(getActivity(),result,Toast.LENGTH_LONG).show();
+
 
             if(result.equals("ok"))
             {
@@ -148,18 +187,26 @@ public class RegisterChallanFragment  extends Fragment {
                 //Intent i= new Intent(getActivity(),PolicePortalActivity.class);
                 //startActivity(i);
 
-            }
-            else
-            {
-                //progress.dismiss();
-                Toast.makeText(getActivity(),"Try Again!",Toast.LENGTH_LONG).show();
+
+                } else if(result.equals("not ok")) {
+                    //progress.dismiss();
+                    Toast.makeText(getActivity(), "Try Again!", Toast.LENGTH_LONG).show();
+                }
+                else if(result.equals("not possible"))
+                {
+                    Toast.makeText(getActivity(), "This person has already voilated this rule 3 times", Toast.LENGTH_LONG).show();
+
+
+                }
+
+            } catch (Exception e) {
+                Toast.makeText(getActivity(), "Error found ! Please try it after sometime", Toast.LENGTH_LONG).show();
+                //Log.v("error :",e.toString());
+
             }
 
+
         }
-        catch(Exception e)
-        {
-            Toast.makeText(getActivity(),"Catchhh",Toast.LENGTH_LONG).show();
-            //Log.v("error :",e.toString());
-        }
+
     }
 }

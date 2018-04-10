@@ -92,6 +92,7 @@ public class LoginActivity extends AppCompatActivity {
             String response= EntityUtils.toString(hr.getEntity()).trim();
             System.out.print(response);
 
+
             if(response.equals("ok"))
             {
                 // System.out.print("hello");
@@ -104,6 +105,32 @@ public class LoginActivity extends AppCompatActivity {
                 e.putString("password", password);
                 e.commit();*//*
 
+
+                if (response.equals("ok")) {
+                    // System.out.print("hello");
+                    Intent i = new Intent(this, PolicePortalActivity.class);
+                    startActivity(i);
+                    finish();
+                    SharedPreferences sp = getSharedPreferences("mydata", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor e = sp.edit();
+                    e.putString("policeId", policeId);
+                    e.putString("password", password);
+                    e.commit();
+
+                } else {
+                    if (!policeId.matches("[a-zA-Z0-9]+")) {
+                        progress.dismiss();
+                        Toast.makeText(this, "Invalid police id", Toast.LENGTH_LONG).show();
+
+                    }
+                    else {
+                        progress.dismiss();
+                        Toast.makeText(PoliceLoginActivity.this, "Either Wrong Police Id or Password", Toast.LENGTH_LONG).show();
+                    }
+                }
+
+            } catch (Exception e) {
+                Log.v("error :", e.toString());
             }
             else
             {

@@ -39,4 +39,5 @@
         <item>Insurance</item>
         <item>Misbehaviour</item>
     </string-array>
+    <string name="title_activity_description_adaptor">DescriptionAdaptor</string>
 </resources>

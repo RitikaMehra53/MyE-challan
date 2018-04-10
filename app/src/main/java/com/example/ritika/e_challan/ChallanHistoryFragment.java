@@ -79,6 +79,10 @@ String rc;
 
                 search();
 
+                listView = (ListView) getActivity().findViewById(R.id.listViewChallanPendinglist);
+                searchPending();
+
+
             }
         });
 
@@ -86,7 +90,7 @@ String rc;
 
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public void search(){
+    public void searchPending(){
 
         rc= URLEncoder.encode(rcNo.getText().toString());
 
@@ -99,7 +103,11 @@ String rc;
             //    Log.v("error","http://studentportal.website/echallan/reg.php?challanNo="+challanNo+"&name="+name+"&phoneNo="+phoneNo+"&rcNo="+rcNo+"&licenceNo="+licenceNo+"&date="+date+"&time="+time+"&description="+description+"&place="+place);
 
 
+
             Toast.makeText(getActivity(),"Hello try",Toast.LENGTH_LONG).show();
+
+            // Toast.makeText(getActivity(),"Hello try",Toast.LENGTH_LONG).show();
+
 
             HttpResponse hr = hc.execute(hp);
             String result= EntityUtils.toString(hr.getEntity()).trim();

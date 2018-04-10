@@ -36,6 +36,19 @@
         <activity
             android:name=".CommonUserPortalActivity"
             android:label="Common User Portal" android:theme="@style/AppTheme.NoActionBar"  />
+            android:label="Common User Portal"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".AdminLoginActivity"
+            android:label="Admin Sign In" />
+        <activity
+            android:name=".AdminPortalActivity"
+            android:label="Admin Portal"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".UpdatePoliceActivity"
+            android:label="Update Police Details" />
+
     </application>
 
 </manifest>
