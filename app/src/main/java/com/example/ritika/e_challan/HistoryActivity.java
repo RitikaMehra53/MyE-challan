@@ -74,6 +74,8 @@ public class HistoryActivity extends AppCompatActivity {
                 Toast.makeText(this,"No data found",Toast.LENGTH_LONG).show();
             }
 
+
+
             else{
                 AllData allData=new AllData();
                 for (int i=0;i<js.length();i++){
