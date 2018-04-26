@@ -10,8 +10,6 @@
     tools:context="com.example.ritika.e_challan.HomeActivity">
 
 
-
-
     <LinearLayout
         android:id="@+id/linearLayoutHomeTop"
         android:layout_width="match_parent"

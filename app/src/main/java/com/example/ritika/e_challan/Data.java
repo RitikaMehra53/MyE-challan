@@ -20,6 +20,45 @@ public class Data {
     String payable;
     String fineAmount;
 
+
+    String des;
+    String fine1;
+    String fine2;
+
+    public String getDes() {
+        return des;
+    }
+
+    public void setDes(String des) {
+        this.des = des;
+    }
+
+    public String getFine1() {
+        return fine1;
+    }
+
+    public void setFine1(String fine1) {
+        this.fine1 = fine1;
+    }
+
+    public String getFine2() {
+        return fine2;
+    }
+
+    public void setFine2(String fine2) {
+        this.fine2 = fine2;
+    }
+
+    public String getFine3() {
+        return fine3;
+    }
+
+    public void setFine3(String fine3) {
+        this.fine3 = fine3;
+    }
+
+    String fine3;
+
     public String getChallanNo() {
         return challanNo;
     }

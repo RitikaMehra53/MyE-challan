@@ -74,6 +74,10 @@ public class AddPoliceFragment extends Fragment {
             }
         });
     }
+    public void isValidPoliceId(String policeId)
+    {
+
+    }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void add()
@@ -82,36 +86,66 @@ public class AddPoliceFragment extends Fragment {
         StrictMode.setThreadPolicy(sp);
 
 
-        String a= URLEncoder.encode(policeIdEdit.getText().toString());
-        String b= URLEncoder.encode(passwordEdit.getText().toString());
-        String c= URLEncoder.encode(phoneNoEdit.getText().toString());
+        String policeId= URLEncoder.encode(policeIdEdit.getText().toString());
+        String password= URLEncoder.encode(passwordEdit.getText().toString());
+        String phoneNo= URLEncoder.encode(phoneNoEdit.getText().toString());
 
-        String d= URLEncoder.encode(nameEdit.getText().toString());
-        Toast.makeText(getActivity(),a+b+c+d,Toast.LENGTH_LONG).show();
-        if (a.isEmpty() ) {
-            Toast.makeText(getActivity(), "Invalid police id", Toast.LENGTH_LONG).show();
+        String name= URLEncoder.encode(nameEdit.getText().toString());
+
+        // Toast.makeText(getActivity(),a+b+c+d,Toast.LENGTH_LONG).show();
+        if (policeId.isEmpty() ) {
+            Toast.makeText(getActivity(), "Please enter police id", Toast.LENGTH_LONG).show();
         }
-        else if(b.isEmpty())
+        else if(!policeId.matches("[a-zA-Z0-9]*"))
         {
-            Toast.makeText(getActivity(), "Invalid password", Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), "Police Id must be alphanumeric", Toast.LENGTH_LONG).show();
+        }
+        else if(password.isEmpty())
+        {
+            Toast.makeText(getActivity(), "Please enter password", Toast.LENGTH_LONG).show();
 
         }
-        else if(c.isEmpty() )
+        else if(!(password.length()>=6 && password.length()<12))
+        {
+            Toast.makeText(getActivity(), "Password must contain 6 to 12 characters", Toast.LENGTH_LONG).show();
+        }
+        else if(password.matches("[a-zA-Z0-9]*"))
+        {
+            Toast.makeText(getActivity(), "Password must contain atleast one special character", Toast.LENGTH_LONG).show();
+        }
+
+        else if(phoneNo.isEmpty() )
+        {
+            Toast.makeText(getActivity(), "Please enter phone number", Toast.LENGTH_LONG).show();
+
+        }
+
+
+
+        else if(phoneNo.length()!=10 )
         {
             Toast.makeText(getActivity(), "Invalid phone number", Toast.LENGTH_LONG).show();
 
-        }else if(d.isEmpty())
+        }
+
+        else if(name.isEmpty())
         {
             Toast.makeText(getActivity(), "Please enter name", Toast.LENGTH_LONG).show();
+
+        }
+        else if(!name.matches("[a-zA-Z]*"))
+        {
+            Toast.makeText(getActivity(), "Invalid name", Toast.LENGTH_LONG).show();
 
         }
         else {
 
 
+
             try
             {
                 HttpClient hc= new DefaultHttpClient();
-                HttpPost hp=new HttpPost("http://studentportal.website/echallan/add_police_details.php?pId="+a+"&pass="+b+"&pNo="+c+"&name="+d);
+                HttpPost hp=new HttpPost("http://studentportal.website/echallan/add_police_details.php?pId="+policeId+"&pass="+password+"&pNo="+phoneNo+"&name="+name);
                 //  Log.v("error","http://studentportal.website/echallan/add_police_details.php?policeId="+policeId+"&password="+password+"&phoneNo"+phoneNo+"&name="+name);
                 HttpResponse hr = hc.execute(hp);
                 String response= EntityUtils.toString(hr.getEntity()).trim();
@@ -121,10 +155,14 @@ public class AddPoliceFragment extends Fragment {
                 {
                     // System.out.print("hello");
                     Toast.makeText(getActivity(),"Successfully added !",Toast.LENGTH_LONG).show();
+                    policeIdEdit.setText("");
+                    passwordEdit.setText("");
+                    nameEdit.setText("");
+                    phoneNoEdit.setText("");
                 }
                 else
                 {
-                    Toast.makeText(getActivity(),response,Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(),"Already have police id!",Toast.LENGTH_LONG).show();
                 }
             }
             catch(Exception e)

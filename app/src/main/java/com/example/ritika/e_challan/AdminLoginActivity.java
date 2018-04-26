@@ -23,6 +23,8 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 
 import java.net.URLEncoder;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class AdminLoginActivity extends AppCompatActivity {
 
@@ -61,16 +63,31 @@ public class AdminLoginActivity extends AppCompatActivity {
         progress.setCancelable(true);
         progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progress.show();
-
-
         String adminId = URLEncoder.encode(adminIdEdit.getText().toString());
         String password = adminPassEdit.getText().toString();
-        if (adminId.isEmpty()) {
+
+        Pattern pattern = Pattern.compile("[a-z0-9]*");
+
+        Matcher aId = pattern.matcher(adminId);
+        // Matcher pass = pattern.matcher(password);
+
+        if (adminId.isEmpty() ) {
+            progress.dismiss();
             Toast.makeText(this, "Please enter admin id", Toast.LENGTH_LONG).show();
-        } else if (password.isEmpty()) {
+        }
+        else if(!aId.matches())
+        {
+            progress.dismiss();
+            Toast.makeText(this, "Invalid admin Id", Toast.LENGTH_LONG).show();
+
+        }
+
+        else if (password.isEmpty()) {
+            progress.dismiss();
             Toast.makeText(this, "Please enter password", Toast.LENGTH_LONG).show();
 
-        } else {
+        }
+        else {
 
 
             try {
@@ -85,16 +102,17 @@ public class AdminLoginActivity extends AppCompatActivity {
                     // System.out.print("hello");
                     Intent i = new Intent(this, AdminPortalActivity.class);
                     startActivity(i);
-                    finish();
                     SharedPreferences sp = getSharedPreferences("mydata", Context.MODE_PRIVATE);
                     SharedPreferences.Editor e = sp.edit();
                     e.putString("adminId", adminId);
                     e.putString("password", password);
                     e.commit();
+                    finish();
+
 
                 } else {
                     progress.dismiss();
-                    Toast.makeText(AdminLoginActivity.this, "Wrong Admin Id and Password", Toast.LENGTH_LONG).show();
+                    Toast.makeText(AdminLoginActivity.this, "You have entered either Admin Id or Password wrong", Toast.LENGTH_LONG).show();
                 }
 
             } catch (Exception e) {

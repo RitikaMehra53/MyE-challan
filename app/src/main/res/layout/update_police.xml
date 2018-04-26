@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
+    android:id="@+id/hiddenlayout"
     android:orientation="vertical">
 
     <LinearLayout
@@ -46,11 +46,12 @@
                         android:fontFamily="sans-serif"/>
                 </LinearLayout>
 
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif"
-                    android:text="UPDATE CHALLAN AMOUNT"
+                    android:text="ADD POLICE"
                     android:textAlignment="center"
                     android:textColor="#1f1f6e"
                     android:textSize="25sp"
@@ -58,34 +59,58 @@
                     android:layout_marginTop="10sp"
                     android:layout_marginBottom="10sp"/>
 
-
-                <android.support.v7.widget.LinearLayoutCompat
+                <EditText
+                    android:id="@+id/editTextUpdatePoliceId"
                     android:layout_width="match_parent"
-                    android:layout_height="0sp"
-                    android:layout_margin="5sp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:weightSum="4">
+                    android:layout_height="wrap_content"
+                    android:hint="Enter Police Id"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:layout_marginTop="10sp"
+                    android:layout_marginBottom="10sp"
+                    android:singleLine="true"
+                    android:fontFamily="sans-serif"/>
+                <EditText
+                    android:id="@+id/editTextUpdatePolicePassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Enter Password"
+                    android:inputType="textPassword"
+                    android:maxLines="1"
+                    android:layout_marginTop="10sp"
+                    android:layout_marginBottom="10sp"
+                    android:singleLine="true"
+                    android:fontFamily="sans-serif"/>
 
-                    <Spinner
-                        android:id="@+id/SpinnerDescriptionChallan"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="3"
-                        android:background="@android:drawable/btn_dropdown"
-                        android:entries="@array/challan_description_arrays" />
-
-                </android.support.v7.widget.LinearLayoutCompat>
-
-
+                <EditText
+                    android:id="@+id/editTextUpdatePolicePhoneNo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Enter Phone Number"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:layout_marginTop="10sp"
+                    android:layout_marginBottom="10sp"
+                    android:singleLine="true"
+                    android:fontFamily="sans-serif"/>
+                <EditText
+                    android:id="@+id/editTextUpdatePoliceName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Enter Name"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:layout_marginTop="10sp"
+                    android:layout_marginBottom="10sp"
+                    android:singleLine="true"
+                    android:fontFamily="sans-serif"/>
                 <Button
-                    android:id="@+id/button_update_challan"
+                    android:id="@+id/buttonUpdatePoliceLayout"
                     style="?android:textAppearanceSmall"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20sp"
-                    android:text="Go for update challan"
+                    android:text="Add"
                     android:background="@drawable/form_button_background"
                     android:textStyle="bold"
                     android:textSize="16sp"

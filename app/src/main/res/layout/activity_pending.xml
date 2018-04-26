@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="vertical">
 
-
-
     <TableRow xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/tableRowFetch"
+        android:id="@+id/tableRowHeader"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#097aca">
+        android:layout_height="wrap_content"
+        android:background="#e90518"
+        android:layout_marginTop="10sp">
 
         <TextView
-            android:id="@+id/textViewPendingFetchChallanNo"
+            android:id="@+id/textViewPendingHeaderChallanNo"
             android:layout_width="70sp"
             android:layout_height="wrap_content"
             android:layout_margin="10sp"
@@ -23,37 +24,38 @@
             android:textStyle="bold"/>
 
         <TextView
-            android:id="@+id/textViewPeningFetchName"
+            android:id="@+id/textViewPendingHeaderName"
             android:layout_width="50sp"
             android:layout_height="wrap_content"
             android:layout_margin="10sp"
-            android:text="Name"
-            android:textColor="#ffffff"
             android:textSize="12sp"
+            android:textColor="#ffffff"
+            android:text="Name"
             android:textStyle="bold"/>
 
         <TextView
-            android:id="@+id/textViewPendingFetchDate"
+            android:id="@+id/textViewPendingHeaderDate"
             android:layout_width="50sp"
             android:layout_height="wrap_content"
             android:layout_margin="10sp"
-            android:textColor="#ffffff"
             android:textSize="12sp"
+            android:textColor="#ffffff"
             android:text="Date"
             android:textStyle="bold"/>
 
         <TextView
-            android:id="@+id/textViewPeningFetchDescription"
+            android:id="@+id/textViewPendingHeaderDescription"
             android:layout_width="70sp"
             android:layout_height="wrap_content"
             android:layout_margin="10sp"
-            android:text="Description"
-            android:textColor="#ffffff"
             android:textSize="12sp"
+            android:textColor="#ffffff"
+            android:text="Description"
             android:textStyle="bold"/>
 
+
         <TextView
-            android:id="@+id/textViewPeningFetchFineAmount"
+            android:id="@+id/textViewPendingHeaderFineAmount"
             android:layout_width="50sp"
             android:layout_height="wrap_content"
             android:layout_margin="10sp"
@@ -63,8 +65,14 @@
             android:textStyle="bold"/>
 
 
-
     </TableRow>
+
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/listViewtrial"></ListView>
+
 
 
 </LinearLayout>

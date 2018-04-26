@@ -50,7 +50,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif"
-                    android:text="ADD POLICE"
+                    android:text="UPDATE POLICE"
                     android:textAlignment="center"
                     android:textColor="#1f1f6e"
                     android:textSize="25sp"

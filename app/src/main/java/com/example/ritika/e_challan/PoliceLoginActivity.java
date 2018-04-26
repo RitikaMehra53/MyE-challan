@@ -23,6 +23,8 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 
 import java.net.URLEncoder;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class PoliceLoginActivity extends AppCompatActivity {
 
@@ -74,13 +76,24 @@ public class PoliceLoginActivity extends AppCompatActivity {
         String password = passEdit.getText().toString();
 
 
+        Pattern pattern = Pattern.compile("[a-zA-Z0-9]*");
 
-
+        Matcher pId = pattern.matcher(policeId);
         if (policeId.isEmpty() ) {
+            progress.dismiss();
             Toast.makeText(this, "Please enter police id", Toast.LENGTH_LONG).show();
         }
+
+        else if(!pId.matches())
+        {
+            progress.dismiss();
+            Toast.makeText(this, "Invalid police Id", Toast.LENGTH_LONG).show();
+
+        }
+
         else if(password.isEmpty())
         {
+            progress.dismiss();
             Toast.makeText(this, "Please enter password", Toast.LENGTH_LONG).show();
 
         }
@@ -90,8 +103,8 @@ public class PoliceLoginActivity extends AppCompatActivity {
 
 
                 HttpClient hc = new DefaultHttpClient();
-                HttpPost hp = new HttpPost("http://studentportal.website/echallan/ab.php?policeId=" + policeId + "&password=" + password);
-                Log.v("error", "http://studentportal.website/echallan/ab.php?policeId=" + policeId + "&password=" + password);
+                HttpPost hp = new HttpPost("http://studentportal.website/echallan/police_login.php?policeId=" + policeId + "&password=" + password);
+                Log.v("error", "http://studentportal.website/echallan/police_login.php?policeId=" + policeId + "&password=" + password);
                 HttpResponse hr = hc.execute(hp);
                 String response = EntityUtils.toString(hr.getEntity()).trim();
                 System.out.print(response);
@@ -100,22 +113,20 @@ public class PoliceLoginActivity extends AppCompatActivity {
                     // System.out.print("hello");
                     Intent i = new Intent(this, PolicePortalActivity.class);
                     startActivity(i);
+                    SharedPreferences sp = getSharedPreferences("mydata", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor e = sp.edit();
+                    e.putString("policeId", policeId);
+                    e.putString("password", password);
+                    e.commit();
                     finish();
-                SharedPreferences sp = getSharedPreferences("mydata", Context.MODE_PRIVATE);
-                SharedPreferences.Editor e = sp.edit();
-                e.putString("policeId", policeId);
-                e.putString("password", password);
-                e.commit();
 
-                } else {
-                    if (!policeId.matches("[a-zA-Z0-9]+")) {
-                        Toast.makeText(this, "Invalid police id", Toast.LENGTH_LONG).show();
 
-                    }
-                    else {
-                        Toast.makeText(PoliceLoginActivity.this, "Either Wrong Police Id or Password", Toast.LENGTH_LONG).show();
-                    }
                 }
+                else {
+                    progress.dismiss();
+                    Toast.makeText(PoliceLoginActivity.this, "You have entered either police Id or password wrong.", Toast.LENGTH_LONG).show();
+                }
+
 
             } catch (Exception e) {
                 Log.v("error :", e.toString());

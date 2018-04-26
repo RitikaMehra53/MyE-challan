@@ -1,5 +1,6 @@
 package com.example.ritika.e_challan;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.StrictMode;
 import android.support.annotation.Nullable;
@@ -14,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import org.apache.http.HttpResponse;
@@ -24,38 +26,20 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.List;
+
+
 public class ChallanUpdateFragment extends Fragment {
 
-    EditText rcEdit;
-    EditText rcFirstEdit;
-    EditText rcSecondEdit;
-    EditText rcThirdEdit;
 
-    EditText helmetEdit;
-    EditText helmetFirstEdit;
-    EditText helmetSecondEdit;
-    EditText helmetThirdEdit;
 
-    EditText pollutionEdit;
-    EditText pollutionFirstEdit;
-    EditText pollutionSecondEdit;
-    EditText pollutionThirdEdit;
 
-    EditText licenceEdit;
-    EditText licenceFirstEdit;
-    EditText licenceSecondEdit;
-    EditText licenceThirdEdit;
-
-    EditText insuranceEdit;
-    EditText insuranceFirstEdit;
-    EditText insuranceSecondEdit;
-    EditText insuranceThirdEdit;
-
-    EditText missbehaveEdit;
-    EditText missbehaveFirstEdit;
-    EditText missbehaveSecondEdit;
-    EditText missbehaveThirdEdit;
-
+    ListView listViewUpdate;
+    Spinner descriptionSpinner;
+    String type;
+    String description,fine1,fine2,fine3;
     Button updateButton;
 
 
@@ -79,131 +63,62 @@ public class ChallanUpdateFragment extends Fragment {
 
 
         updateButton = (Button) getActivity().findViewById(R.id.button_update_challan);
-        Toast.makeText(getActivity(),"hellooo",Toast.LENGTH_LONG).show();
+        /*listViewUpdate=(ListView)getActivity().findViewById(R.id.listViewDescription);
+
+
+        StrictMode.ThreadPolicy sp= new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(sp);
+
+        Toast.makeText(getActivity(),"hellooo",Toast.LENGTH_LONG).show();*/
+
+
 
         updateButton.setOnClickListener(new View.OnClickListener(){
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onClick(View v) {
-                rcFirstEdit =(EditText) getActivity().findViewById(R.id.rcFineFirst);
-                rcSecondEdit =(EditText) getActivity().findViewById(R.id.rcFineSecond);
-                rcThirdEdit =(EditText) getActivity().findViewById(R.id.rcFineThird);
 
-                helmetFirstEdit=(EditText) getActivity().findViewById(R.id.helmetFineFirst);
-                helmetSecondEdit=(EditText) getActivity().findViewById(R.id.helmetFineSecond);
-                helmetThirdEdit=(EditText) getActivity().findViewById(R.id.helmetFineThird);
 
-                pollutionFirstEdit=(EditText) getActivity().findViewById(R.id.pollutionFineFirst);
-                pollutionSecondEdit=(EditText) getActivity().findViewById(R.id.pollutionFineSecond);
-                pollutionThirdEdit=(EditText) getActivity().findViewById(R.id.pollutionFineThird);
-
-                licenceFirstEdit=(EditText) getActivity().findViewById(R.id.licenceFineFirst);
-                licenceSecondEdit=(EditText) getActivity().findViewById(R.id.licenceFineSecond);
-                licenceThirdEdit=(EditText) getActivity().findViewById(R.id.licenceFineThird);
-
-                insuranceFirstEdit=(EditText) getActivity().findViewById(R.id.insuranceFineFirst);
-                insuranceSecondEdit=(EditText) getActivity().findViewById(R.id.insuranceFineSecond);
-                insuranceThirdEdit=(EditText) getActivity().findViewById(R.id.insuranceFineThird);
-
-                missbehaveFirstEdit=(EditText) getActivity().findViewById(R.id.missbehaveFineFirst);
-                missbehaveSecondEdit=(EditText) getActivity().findViewById(R.id.missbehaveFineSecond);
-                missbehaveThirdEdit=(EditText) getActivity().findViewById(R.id.missbehaveFineThird);
-
-                rcEdit =(EditText)getActivity().findViewById(R.id.editTextUpdateRc);
-                helmetEdit =(EditText)getActivity().findViewById(R.id.editTextUpdateHelmet);
-                pollutionEdit =(EditText)getActivity().findViewById(R.id.editTextUpdatePollution);
-                licenceEdit =(EditText)getActivity().findViewById(R.id.editTextUpdateLicence);
-                insuranceEdit =(EditText)getActivity().findViewById(R.id.editTextUpdateInsurance);
-                missbehaveEdit =(EditText)getActivity().findViewById(R.id.editTextUpdateMissbehave);
-                try
-                {
-                    HttpClient hc= new DefaultHttpClient();
-                    HttpPost hp=new HttpPost("http://studentportal.website/echallan/get_description_details.php");
-                    // Log.v("error","http://studentportal.website/echallan/add_police_details.php?policeId="+policeId+"&password="+password+"&phoneNo"+phoneNo+"&name="+name);
-                    HttpResponse hr = hc.execute(hp);
-                    String response= EntityUtils.toString(hr.getEntity()).trim();
-                    //System.out.print(response);
-
-                    JSONObject js= new JSONObject(response);
-                    JSONArray data = js.getJSONArray("data");
-
-                    Toast.makeText(getActivity(),"before loop",Toast.LENGTH_LONG).show();
-
-                    // looping through All Contacts
-                    for (int i = 0; i < data.length(); i++) {
-                        JSONObject c = data.getJSONObject(i);
-
-                        String des = c.getString("des");
-                        String first = c.getString("a");
-                        String second = c.getString("b");
-                        String third = c.getString("c");
-
-                        Toast.makeText(getActivity(),des+first+second+third,Toast.LENGTH_LONG).show();
-                    }
-
-                    if(response.equals("ok"))
-                    {
-                        // System.out.print("hello");
-                        Toast.makeText(getActivity(),"Successfully added !",Toast.LENGTH_LONG).show();
-                    }
-                    else
-                    {
-                        Toast.makeText(getActivity(),response,Toast.LENGTH_LONG).show();
-                    }
-                }
-                catch(Exception e)
-                {
-                    Log.v("error :",e.toString());
-                }
-                update();
-
+                descriptionSpinner= (Spinner) getActivity().findViewById(R.id.SpinnerDescriptionChallan);
+                get_description();
             }
         });
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public void update()
-    {
-        StrictMode.ThreadPolicy sp= new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(sp);
-
-
-        Toast.makeText(getActivity(),"byee",Toast.LENGTH_LONG).show();
-
+    public void get_description(){
+        type = URLEncoder.encode(descriptionSpinner.getSelectedItem().toString());
+        //Toast.makeText(getActivity(),type,Toast.LENGTH_LONG).show();
         try
         {
+
+            //Toast.makeText(this,des,Toast.LENGTH_LONG).show();
+
             HttpClient hc= new DefaultHttpClient();
-            HttpPost hp=new HttpPost("http://studentportal.website/echallan/get_description_details.php");
+            HttpPost hp=new HttpPost("http://studentportal.website/echallan/get_description_details.php?type="+type);
             // Log.v("error","http://studentportal.website/echallan/add_police_details.php?policeId="+policeId+"&password="+password+"&phoneNo"+phoneNo+"&name="+name);
             HttpResponse hr = hc.execute(hp);
-            String response= EntityUtils.toString(hr.getEntity()).trim();
-            //System.out.print(response);
+            String result= EntityUtils.toString(hr.getEntity()).trim();
+            //Toast.makeText(getActivity(),result,Toast.LENGTH_LONG).show();
 
-            JSONObject js= new JSONObject(response);
-            JSONArray data = js.getJSONArray("data");
-            Log.d("APP",data.toString());
+            JSONArray js= new JSONArray(result);
+            Log.d("CHALLAN",js.toString()+"\n");
 
-            // looping through All Contacts
-            for (int i = 0; i < data.length(); i++) {
-                JSONObject c = data.getJSONObject(i);
-
-                String des = c.getString("des");
-                String first = c.getString("a");
-                String second = c.getString("b");
-                String third = c.getString("c");
-
-                Toast.makeText(getActivity(),des+first+second+third,Toast.LENGTH_LONG).show();
+            for (int i=0;i<js.length();i++){
+                JSONObject a=new JSONObject();
+                a=js.getJSONObject(i);
+                description = a.getString("des");
+                fine1= a.getString("a");
+                fine2= a.getString("b");
+                fine3= a.getString("c");
             }
 
-            if(response.equals("ok"))
-            {
-                // System.out.print("hello");
-                Toast.makeText(getActivity(),"Successfully added !",Toast.LENGTH_LONG).show();
-            }
-            else
-            {
-                Toast.makeText(getActivity(),response,Toast.LENGTH_LONG).show();
-            }
+            Intent i= new Intent(getActivity(),DescriptionActivity.class);
+            i.putExtra("description",description);
+            i.putExtra("fine1",fine1);
+            i.putExtra("fine2",fine2);
+            i.putExtra("fine3",fine3);
+            startActivity(i);
         }
         catch(Exception e)
         {
@@ -211,6 +126,5 @@ public class ChallanUpdateFragment extends Fragment {
         }
 
     }
-
 
 }

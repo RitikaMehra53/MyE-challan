@@ -7,6 +7,9 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
 
     <application
         android:allowBackup="true"
@@ -31,7 +34,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".HomeActivity"
-            android:label="E-Challan" />
+            android:label="E-challan" />
         <activity
             android:name=".CommonUserPortalActivity"
             android:label="Common User Portal"
@@ -45,7 +48,13 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".UpdatePoliceActivity"
-            android:label="Update Police Details"/>
+            android:label="Update Police Details" />
+        <activity android:name=".PendingActivity"
+            android:label="Pending Challans" />
+        <activity android:name=".HistoryActivity"
+            android:label="Challan History" />
+        <activity android:name=".DescriptionActivity"
+            android:label="Update Fine Amounts" ></activity>
     </application>
 
 </manifest>

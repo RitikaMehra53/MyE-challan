@@ -1,48 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="vertical">
 
     <TableRow xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/tableRowFetch"
+        android:id="@+id/tableRowHeader"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#097aca">
+        android:layout_height="wrap_content"
+        android:background="#e90518"
+        android:layout_marginTop="10sp">
 
         <TextView
-            android:id="@+id/textViewFetchChallanNo"
+            android:id="@+id/textViewHeaderChallanNo"
             android:layout_width="40sp"
             android:layout_height="wrap_content"
             android:layout_margin="5sp"
             android:textSize="12sp"
             android:textColor="#ffffff"
-            android:text="Challan No"
+            android:text="C No"
             android:textStyle="bold"/>
 
 
         <TextView
-            android:id="@+id/textViewFetchName"
+            android:id="@+id/textViewHeaderName"
             android:layout_width="40sp"
             android:textColor="#ffffff"
+            android:textSize="12sp"
             android:layout_height="wrap_content"
             android:layout_margin="5sp"
-            android:textSize="12sp"
-            android:text="Name of Violator"
+            android:text="Name"
             android:textStyle="bold"/>
 
         <TextView
-            android:id="@+id/textViewFetchLicenceNo"
+            android:id="@+id/textViewHeaderLicenceNo"
             android:layout_width="40sp"
             android:textColor="#ffffff"
+            android:textSize="12sp"
             android:layout_height="wrap_content"
             android:layout_margin="5sp"
-            android:textSize="12sp"
-            android:text="Licence No."
+            android:text="L No."
             android:textStyle="bold"/>
-
         <TextView
-            android:id="@+id/textViewFetchDate"
+            android:id="@+id/textViewHeaderDate"
             android:layout_width="40sp"
             android:layout_height="wrap_content"
             android:layout_margin="5sp"
@@ -51,9 +53,8 @@
             android:text="Date"
             android:textStyle="bold"/>
 
-
         <TextView
-            android:id="@+id/textViewFetchTime"
+            android:id="@+id/textViewHeaderTime"
             android:layout_width="40sp"
             android:textColor="#ffffff"
             android:layout_height="wrap_content"
@@ -62,10 +63,8 @@
             android:text="Time"
             android:textStyle="bold"/>
 
-
-
         <TextView
-            android:id="@+id/textViewFetchPlace"
+            android:id="@+id/textViewHeaderPlace"
             android:layout_width="40sp"
             android:textColor="#ffffff"
             android:layout_height="wrap_content"
@@ -75,15 +74,18 @@
             android:textStyle="bold"/>
 
         <TextView
-            android:id="@+id/textViewFetchDescription"
+            android:id="@+id/textViewHeaderDescription"
             android:layout_width="40sp"
             android:layout_height="wrap_content"
             android:layout_margin="5sp"
-            android:text="Description"
-            android:textSize="12sp"
+            android:text="Desp"
             android:textColor="#ffffff"
+            android:textSize="12sp"
             android:textStyle="bold"/>
     </TableRow>
 
-
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/listViewTrialHistory"></ListView>
 </LinearLayout>

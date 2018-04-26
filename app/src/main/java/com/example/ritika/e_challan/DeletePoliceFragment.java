@@ -25,6 +25,8 @@ import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Random;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class DeletePoliceFragment extends Fragment {
 
@@ -62,48 +64,54 @@ public class DeletePoliceFragment extends Fragment {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public void delete()
-    {
+    public void delete() {
 
-        StrictMode.ThreadPolicy sp= new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.ThreadPolicy sp = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(sp);
-        String policeId= URLEncoder.encode(policeIdEdit.getText().toString());
+        String policeId = URLEncoder.encode(policeIdEdit.getText().toString());
 // create instance of Random class
+        Pattern pattern = Pattern.compile("[a-z0-9]*");
 
-        if (policeId.isEmpty() || policeId.matches("[A-Za-z0-9]{10}")) {
-            Toast.makeText(getActivity(), "Invalid police id", Toast.LENGTH_LONG).show();
+        Matcher pId = pattern.matcher(policeId);
+        // Matcher pass = pattern.matcher(password);
+
+        if (policeId.isEmpty()) {
+            Toast.makeText(getActivity(), "Enter police Id", Toast.LENGTH_LONG).show();
         }
-
-        try{
-
-
-            HttpClient hc= new DefaultHttpClient();
-            HttpPost hp=new HttpPost("http://studentportal.website/echallan/delete_police_details.php?policeId="+policeId);
-            //    Log.v("error","http://studentportal.website/echallan/reg.php?challanNo="+challanNo+"&name="+name+"&phoneNo="+phoneNo+"&rcNo="+rcNo+"&licenceNo="+licenceNo+"&date="+date+"&time="+time+"&description="+description+"&place="+place);
-            HttpResponse hr = hc.execute(hp);
-            String result= EntityUtils.toString(hr.getEntity()).trim();
-
-            Toast.makeText(getActivity(),result,Toast.LENGTH_LONG).show();
-
-            if(result.equals("ok"))
-            {
-                Toast.makeText(getActivity(),"Succesfully deleted",Toast.LENGTH_LONG).show();
-
-
-            }
-            else
-            {
-                //progress.dismiss();
-                Toast.makeText(getActivity(),result,Toast.LENGTH_LONG).show();
-            }
-
-        }
-        catch(Exception e)
+        else if(!policeId.matches("[a-zA-Z0-9]*"))
         {
-            Toast.makeText(getActivity(),"Catchhh",Toast.LENGTH_LONG).show();
-            //Log.v("error :",e.toString());
+            Toast.makeText(getActivity(), "Enter valid police id", Toast.LENGTH_LONG).show();
+        }
+
+        else {
+            try {
+
+
+                HttpClient hc = new DefaultHttpClient();
+                HttpPost hp = new HttpPost("http://studentportal.website/echallan/delete_police_details.php?policeId=" + policeId);
+                //    Log.v("error","http://studentportal.website/echallan/reg.php?challanNo="+challanNo+"&name="+name+"&phoneNo="+phoneNo+"&rcNo="+rcNo+"&licenceNo="+licenceNo+"&date="+date+"&time="+time+"&description="+description+"&place="+place);
+                HttpResponse hr = hc.execute(hp);
+                String result = EntityUtils.toString(hr.getEntity()).trim();
+
+                //  Toast.makeText(getActivity(),result,Toast.LENGTH_LONG).show();
+
+                if (result.equals("ok")) {
+                    Toast.makeText(getActivity(), "Police id deleted", Toast.LENGTH_LONG).show();
+                    policeIdEdit.setText("");
+
+
+                } else if (result.equals("not ok")) {
+                    Toast.makeText(getActivity(), "Enter valid Police id", Toast.LENGTH_LONG).show();
+
+
+                }
+
+
+            } catch (Exception e) {
+                Toast.makeText(getActivity(), "Error found. Try again!", Toast.LENGTH_LONG).show();
+                //Log.v("error :",e.toString());
+            }
         }
     }
-
 }
 

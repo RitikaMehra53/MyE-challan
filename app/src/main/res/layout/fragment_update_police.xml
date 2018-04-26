@@ -70,7 +70,6 @@
                     android:fontFamily="sans-serif"/>
 
                 <Button
-                    android:onClick="update"
                     android:id="@+id/buttonUpdatePoliceDetails"
                     style="?android:textAppearanceSmall"
                     android:layout_width="match_parent"

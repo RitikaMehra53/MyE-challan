@@ -3,16 +3,15 @@ package com.example.ritika.e_challan;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.os.Build;
 import android.os.StrictMode;
-import android.support.annotation.RequiresApi;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.apache.http.HttpResponse;
@@ -20,63 +19,60 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
-public class UpdatePoliceActivity extends AppCompatActivity {
+public class DescriptionActivity extends AppCompatActivity {
 
-    String pId,name,pass,pNo,policeId,name1,pass1,pNo1;
-    EditText policeIdEdit, passEdit,phoneEdit,nameEdit;
+    ListView listView3;
+    String descrription,fine1,fine2,fine3,des_1,fine_1,fine_2,fine_3;
+    TextView desEdit;
+    EditText fine1Edit,fine2Edit,fine3Edit;
 
-    Button buttonUpdatePoliceDet;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_update_police);
+        setContentView(R.layout.activity_description);
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#1f1f6e")));
-        //Toast.makeText(this,"before function",Toast.LENGTH_LONG).show();
 
-        buttonUpdatePoliceDet = (Button) findViewById(R.id.buttonUpdatePolice);
+        //listView3 = (ListView)findViewById(R.id.listViewTrialDescription);
+
+        desEdit =(TextView)findViewById(R.id.description);
+        fine1Edit =(EditText)findViewById(R.id.fine1);
+        fine2Edit =(EditText)findViewById(R.id.fine2);
+        fine3Edit =(EditText)findViewById(R.id.fine3);
 
         Intent i = getIntent();
-        pId = i.getStringExtra("policeId");
-        name= i.getStringExtra("name");
-        pass= i.getStringExtra("password");
-        pNo= i.getStringExtra("phoneNo");
+        descrription = i.getStringExtra("description");
+        fine1= i.getStringExtra("fine1");
+        fine2= i.getStringExtra("fine2");
+        fine3= i.getStringExtra("fine3");
 
-        policeIdEdit = (EditText) findViewById(R.id.editTextUpdatePoliceId);
-        passEdit = (EditText) findViewById(R.id.editTextUpdatePolicePassword);
-        phoneEdit = (EditText) findViewById(R.id.editTextUpdatePolicePhoneNo);
-        nameEdit = (EditText) findViewById(R.id.editTextUpdatePoliceName);
-
-        policeIdEdit.setText(pId);
-        phoneEdit.setText(pNo);
-        passEdit.setText(pass);
-        nameEdit.setText(name);
+        desEdit.setText(descrription);
+        fine1Edit.setText(fine1);
+        fine2Edit.setText(fine2);
+        fine3Edit.setText(fine3);
         StrictMode.ThreadPolicy sp= new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(sp);
 
-        buttonUpdatePoliceDet.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                update();
-            }
-        });
-
     }
-    public void update()
-    {
-        policeId=policeIdEdit.getText().toString();
-        pNo1=phoneEdit.getText().toString();
-        pass1=passEdit.getText().toString();
-        name1=nameEdit.getText().toString();
+
+
+    public void update_challan_amount(View view) {
+        //Toast.makeText(this,"Successfully Updated",Toast.LENGTH_LONG).show();
+
+        des_1=desEdit.getText().toString();
+        fine_1=fine1Edit.getText().toString();
+        fine_2=fine2Edit.getText().toString();
+        fine_3=fine3Edit.getText().toString();
         //Toast.makeText(this,"before try",Toast.LENGTH_LONG).show();
 
         try
         {
             HttpClient hc= new DefaultHttpClient();
-            HttpPost hp=new HttpPost("http://studentportal.website/echallan/update_police_details.php?pId="+pId+"&pass="+pass1+"&pNo="+pNo1+"&name="+name1+"&policeId="+policeId);
+            HttpPost hp=new HttpPost("http://studentportal.website/echallan/update_challan.php?des1="+des_1+"&fine1="+fine_1+"&fine2="+fine_2+"&fine3="+fine_3);
 
             //  Log.v("error","http://studentportal.website/echallan/add_police_details.php?policeId="+policeId+"&password="+password+"&phoneNo"+phoneNo+"&name="+name);
             HttpResponse hr = hc.execute(hp);
@@ -89,10 +85,6 @@ public class UpdatePoliceActivity extends AppCompatActivity {
             {
                 // System.out.print("hello");
                 Toast.makeText(this,"Successfully updated !",Toast.LENGTH_LONG).show();
-                policeIdEdit.setText("");
-                passEdit.setText("");
-                phoneEdit.setText("");
-                nameEdit.setText("");
             }
             else
             {
@@ -103,6 +95,6 @@ public class UpdatePoliceActivity extends AppCompatActivity {
         {
             Log.v("error :",e.toString());
         }
-
     }
+
 }

@@ -13,20 +13,19 @@ import java.util.ArrayList;
  * Created by Ritika on 04-Apr-18.
  */
 
-public class PendingBaseAdapter extends BaseAdapter {
+public class PendingBaseAdapter extends BaseAdapter{
 
     Context ctx;
     ArrayList<Data> data;
-    PendingBaseAdapter(Context ctx,ArrayList<Data> data){
+    PendingBaseAdapter(Context context,ArrayList<Data> fetchDetais){
 
-        this.ctx=ctx;
-        this.data=data;
+        ctx=context;
+        data=fetchDetais;
     }
 
     @Override
     public int getCount() {
-        return 5;
-        //return data.size();
+        return data.size();
     }
 
     @Override
@@ -51,9 +50,15 @@ public class PendingBaseAdapter extends BaseAdapter {
         TextView textViewDate=(TextView)view1.findViewById(R.id.textViewPendingFetchDate);
         textViewDate.setText(data.get(position).date1);
 
+        TextView textViewChallanFineAmount=(TextView)view1.findViewById(R.id.textViewPeningFetchFineAmount);
+        textViewChallanFineAmount.setText(data.get(position).fineAmount);
 
-        TextView textViewFineAmount=(TextView)view1.findViewById(R.id.textViewPeningFetchFineAmount);
-        textViewFineAmount.setText(data.get(position).fineAmount);
+        TextView textViewChallanDescription=(TextView)view1.findViewById(R.id.textViewPeningFetchDescription);
+        textViewChallanDescription.setText(data.get(position).description);
+
+        TextView textViewChallanName=(TextView)view1.findViewById(R.id.textViewPeningFetchName);
+        textViewChallanName.setText(data.get(position).name);
+
 
         return view1;
     }

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
@@ -16,14 +17,15 @@ import java.util.List;
  * Created by Ritika on 30-Mar-18.
  */
 
+
 public class HistoryBaseAdapter extends BaseAdapter{
 
     Context ctx;
     ArrayList<Data> data;
-    HistoryBaseAdapter(Context context,ArrayList<Data> fetchDetais){
+    HistoryBaseAdapter(Context context,ArrayList<Data> fetchDetails){
 
         ctx=context;
-        data=fetchDetais;
+        data=fetchDetails;
     }
 
     @Override

@@ -49,7 +49,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif"
-                    android:text="DELETE_POLICE_DETAILS"
+                    android:text="DELETE POLICE"
                     android:textAlignment="center"
                     android:textColor="#1f1f6e"
                     android:textSize="25sp"
